@@ -1,25 +1,48 @@
-import logo from './logo.svg';
+import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.css';
+import Cart from './Componenets/Cart/Cart';
+import Filters from './Componenets/Filters/Filters';
+import EditProfile from './Componenets/EditProfile/EditProfile';
+import Payment from './Componenets/Payment/Payment';
+import User from './Componenets/User/User';
+import Layout from './Componenets/Layout/Layout';
+import Home from './Componenets/Home/Home';
+import Orders from './Componenets/Orders/Orders';
+import NotFound from './Componenets/NotFound/NotFound';
+import Login from './Componenets/Login/Login';
+import Register from './Componenets/Register/Register';
+import Whislist from './Componenets/Whislist/Whislist';
+import Checkout from './Componenets/Checkout/Checkout';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+  const router = createBrowserRouter([
+    {
+      path: '', element: <Layout />, children: [
+        { path: '', element: <Navigate to={'home'} /> },
+        { path: 'register', element: <Register />  },
+        { path: 'login', element:   <Login /> },
+        { path: 'home', element:  <Home />  },
+        { path: 'cart', element:  <Cart /> },
+        { path: 'filters', element:  <Filters /> },
+        { path: 'editprofile', element:  <EditProfile /> },
+        { path: 'orders', element: <Orders />  },
+        { path: 'payment', element:  <Payment />  },
+        { path: 'user', element:  <User />  },
+        { path: 'whislist', element:  <Whislist/>  },
+        { path: 'checkout', element:  <Checkout/>  },
+
+        { path: '*', element: <NotFound /> },
+      ]
+    }
+  ])
+
+
+  return <>
+  
+      <RouterProvider router={router}></RouterProvider>
+  
+  </>
 }
 
 export default App;
