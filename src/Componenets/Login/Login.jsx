@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom'
 
 export default function Login() {
   return (
-    <div className="row">
-    <div className="col-lg-5 d-none d-lg-flex justify-content-center align-items-center">
-      <img className=" p-5 phone2 w-100" src={phone1} alt="" />
+    <div className="row m-5">
+    <div className="col-lg-5 d-none d-lg-flex justify-content-center align-items-center ">
+      <img className="phone2 w-100" src={phone1} alt="" />
     </div>
 
     <div className="col-lg-7">
-      <div className="min-vh-100 d-flex justify-content-center align-items-center text-center signup-container">
-        <div className="bg-light bg-opacity-25 shadow w-100 mx-auto  p-5 rounded-2">
+      <div className="d-flex justify-content-center align-items-center text-center signup-container">
+        <div className="bg-light bg-opacity-25 shadow w-100 mx-auto rounded-2 login">
           <h1 className="fw-bold">Login Now</h1>
           <div className="pt-3">
             <form >
