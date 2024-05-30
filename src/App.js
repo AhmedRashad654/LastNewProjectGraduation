@@ -13,6 +13,8 @@ import Login from './Componenets/Login/Login';
 import Register from './Componenets/Register/Register';
 import Whislist from './Componenets/Whislist/Whislist';
 import Checkout from './Componenets/Checkout/Checkout';
+import Products from './Componenets/products/products';
+import Bestseller from './Componenets/bestseller/Bestseller';
 
 function App() {
 
@@ -31,6 +33,10 @@ function App() {
         { path: 'user', element:  <User />  },
         { path: 'whislist', element:  <Whislist/>  },
         { path: 'checkout', element:  <Checkout/>  },
+        { path: 'products', element:  <Products/>  },
+        { path: 'bestesller', element:  <Bestseller/>  },
+        
+        
 
         { path: '*', element: <NotFound /> },
       ]
