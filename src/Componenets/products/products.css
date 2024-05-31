@@ -1,3 +1,10 @@
-.no-border{
-    border: none;
+.no-border {
+    border: none !important;
+}
+.Postion{
+    position: relative;
+}
+.showbutton{
+    position: absolute;
+    bottom: 0;
 }

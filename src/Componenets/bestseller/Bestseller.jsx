@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { Link } from 'react-router-dom';
-// import './products.css'; // Import your custom CSS file
+import './bestseller.css'; // Import your custom CSS file
 
 function Bestseller() {
     const [products, setProduct] = useState([]);
@@ -30,7 +30,7 @@ function Bestseller() {
                         <div className="col"
                             onMouseOver={() => handleMouseOver(product.id)}
                             onMouseOut={handleMouseOut}>
-                            <div className="card no-border">
+                            <div className="card noborder">
                                 <div>
                                     <img src={product.images} className="card-img-top" alt={product.title} />
                                     <Link className={`btn btn-dark w-100 showbutton ${hoverProduct === product.id ? 'd-block' : 'd-none'}`}>
