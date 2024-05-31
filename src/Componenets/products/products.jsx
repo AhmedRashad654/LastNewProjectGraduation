@@ -33,9 +33,14 @@ function Products() {
                             <div className="card no-border">
                                 <div className='Postion'>
                                     <img src={product.images} className="card-img-top" alt={product.title} />
-                                    <Link className={`btn btn-dark w-100 showbutton ${hoverProduct === product.id ? 'd-block' : 'd-none'}`}>
+                                    <Link to={`/cart`} className={`btn btn-dark w-100 showbutton ${hoverProduct === product.id ? 'd-block' : 'd-none'}`}>
                                         Add to cart
                                     </Link>
+                                    <div className='icons'> 
+                                    <Link  to={`/whislist`}>
+                                    <i className="fa-regular fa-heart iconwish"></i> </Link>
+                                 <Link to={`/details/${product.id}`}>   <i className="fa-regular fa-eye icondetails"></i></Link>
+                                    </div>
                                 </div>
                                 <div className="card-body">
                                     <h5 className="card-title">{product.title}</h5>

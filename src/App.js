@@ -15,6 +15,7 @@ import Whislist from './Componenets/Whislist/Whislist';
 import Checkout from './Componenets/Checkout/Checkout';
 import Products from './Componenets/products/products';
 import Bestseller from './Componenets/bestseller/Bestseller';
+import Dettails from './Componenets/details/details';
 
 function App() {
 
@@ -25,16 +26,17 @@ function App() {
         { path: 'register', element: <Register />  },
         { path: 'login', element:   <Login /> },
         { path: 'home', element:  <Home />  },
-        { path: 'cart', element:  <Cart /> },
+        { path: 'cart/:id', element:  <Cart /> },
         { path: 'filters', element:  <Filters /> },
         { path: 'editprofile', element:  <EditProfile /> },
         { path: 'orders', element: <Orders />  },
         { path: 'payment', element:  <Payment />  },
         { path: 'user', element:  <User />  },
-        { path: 'whislist', element:  <Whislist/>  },
+        { path: 'whislist/:id', element:  <Whislist/>  },
         { path: 'checkout', element:  <Checkout/>  },
         { path: 'products', element:  <Products/>  },
         { path: 'bestesller', element:  <Bestseller/>  },
+        { path: 'details/:id', element:  <Dettails/>  },
         
         
 
