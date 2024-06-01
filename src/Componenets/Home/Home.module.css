@@ -36,4 +36,38 @@
   max-width: 1200px; 
   height:90%
 }
+.shapeContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Adjusted gap to 10px for better spacing */
+  padding: 20px;
+}
 
+.Rectangle {
+  width: 10px;
+  height: 25px;
+  border-radius: 3px;
+  background-color: #DB4444;
+}
+
+.title {
+  margin: 0; /* Ensure no extra margin */
+}
+
+
+.bestSellingProductsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin:10px;
+  padding: 20px;
+ 
+}
+
+.bestSellingProductsContainer h3 {
+  margin: 0;
+}
+
+.bestSellingProductsContainer .btn {
+  margin-left: auto;
+}

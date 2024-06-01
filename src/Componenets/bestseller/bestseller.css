@@ -1,3 +1,4 @@
-.noborder{
-    border: none;
+.bestseller-row {
+    max-width: 1000px; /* Adjust as per your requirement */
+    margin: 0 auto; /* To center the row */
 }

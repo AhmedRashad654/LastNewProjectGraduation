@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { Link } from 'react-router-dom';
-import './bestseller.css'; // Import your custom CSS file
+import './bestseller.css'
 
 function Bestseller() {
     const [products, setProduct] = useState([]);
@@ -12,7 +12,7 @@ function Bestseller() {
             .then((res) => {
                 setProduct(res.data);
             });
-    }, []); // Added empty dependency array to ensure the effect runs only once
+    }, []);
 
     const handleMouseOver = (productId) => {
         setHoverProduct(productId);
@@ -25,17 +25,22 @@ function Bestseller() {
     return (
         <div>
             <div className="row row-cols-1 row-cols-md-4 g-4">
-                {products.map((product) => (
+                {products.slice(0, 4).map((product) => (
                     <div key={product.id}>
                         <div className="col"
                             onMouseOver={() => handleMouseOver(product.id)}
                             onMouseOut={handleMouseOut}>
-                            <div className="card noborder">
-                                <div>
+                            <div className="card no-border">
+                                <div className='Postion'>
                                     <img src={product.images} className="card-img-top" alt={product.title} />
-                                    <Link className={`btn btn-dark w-100 showbutton ${hoverProduct === product.id ? 'd-block' : 'd-none'}`}>
+                                    <Link to={`/cart`} className={`btn btn-dark w-100 showbutton ${hoverProduct === product.id ? 'd-block' : 'd-none'}`}>
                                         Add to cart
                                     </Link>
+                                    <div className='icons'> 
+                                    <Link  to={`/whislist`}>
+                                    <i className="fa-regular fa-heart iconwish"></i> </Link>
+                                 <Link to={`/details/${product.id}`}>   <i className="fa-regular fa-eye icondetails"></i></Link>
+                                    </div>
                                 </div>
                                 <div className="card-body">
                                     <h5 className="card-title">{product.title}</h5>
@@ -51,3 +56,5 @@ function Bestseller() {
 }
 
 export default Bestseller;
+
+

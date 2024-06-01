@@ -16,6 +16,9 @@ import Checkout from './Componenets/Checkout/Checkout';
 import Products from './Componenets/products/products';
 import Bestseller from './Componenets/bestseller/Bestseller';
 import Dettails from './Componenets/details/details';
+import Slider from 'react-slick';
+import ImageCards from './Componenets/ImageCards/ImageCards';
+
 
 function App() {
 
@@ -37,6 +40,7 @@ function App() {
         { path: 'products', element:  <Products/>  },
         { path: 'bestesller', element:  <Bestseller/>  },
         { path: 'details/:id', element:  <Dettails/>  },
+        { path: 'imagecards', element:  <ImageCards/>  },
         
         
 
