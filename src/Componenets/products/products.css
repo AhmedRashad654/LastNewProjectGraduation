@@ -9,14 +9,22 @@
     bottom: 0;
 }
 
-.iconwish{
-    color: black;
-    background-color: white;
-    border-radius: 50%;
+.favourit{
     position: absolute;
     top: 10px;
-    right:12px;
-    padding: 3px;
+    right:10px;
+    border: none;
+    border-radius: 50%;
+}
+.iconwishfavourit{
+    color: #DB4444;
+    border-radius: 50%;
+}
+.iconwish{
+    color: black;
+    border-radius: 50%;
+   
+   
 }
 .icondetails{
 color: black;
