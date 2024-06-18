@@ -18,10 +18,14 @@ import Bestseller from './Componenets/bestseller/Bestseller';
 import Dettails from './Componenets/details/details';
 import Slider from 'react-slick';
 import ImageCards from './Componenets/ImageCards/ImageCards';
+import ShoppingCartProvider from './Componenets/context/ShoppingCartContext';
+import { SearchProvider } from './Componenets/context/SearchContext';
+
 
 
 function App() {
 
+  
   const router = createBrowserRouter([
     {
       path: '', element: <Layout />, children: [
@@ -51,8 +55,11 @@ function App() {
 
 
   return <>
-  
+  <SearchProvider>
+   <ShoppingCartProvider>
       <RouterProvider router={router}></RouterProvider>
+      </ShoppingCartProvider>
+      </SearchProvider>
   
   </>
 }
