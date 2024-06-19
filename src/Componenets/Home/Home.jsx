@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import style from '../Home/Home.module.css';
 import iphones from '../../Assets/without.png';
 import Laptops from '../../Assets/Lptops without.png';
 import Accessories from '../../Assets/accessories.png';
 import image from '../../Assets/EditPH.png';
 import Bestseller from '../bestseller/Bestseller';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+// import axios from 'axios';
+// import { Link } from 'react-router-dom';
+// import { Button } from 'react-bootstrap';
 import HomeSlider from '../HomeSlider/HomeSlider';
 import Products from '../products/products';
 
 export default function Home() {
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
 
-  useEffect(() => {
-    axios.get('https://api.escuelajs.co/api/v1/products')
-      .then(res => {
-        setProducts(res.data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios.get('https://api.escuelajs.co/api/v1/products')
+  //     .then(res => {
+  //       setProducts(res.data);
+  //     });
+  // }, []);
 
   return (
     <div>

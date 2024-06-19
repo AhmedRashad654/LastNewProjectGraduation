@@ -20,11 +20,25 @@ import Checkout from "./Componenets/Checkout/Checkout";
 import Products from "./Componenets/products/products";
 import Bestseller from "./Componenets/bestseller/Bestseller";
 import Dettails from "./Componenets/details/details";
-import Slider from "react-slick";
+// import Slider from "react-slick";
 import ImageCards from "./Componenets/ImageCards/ImageCards";
 import ShoppingCartProvider from "./Componenets/context/ShoppingCartContext";
 import { SearchProvider } from "./Componenets/context/SearchContext";
-
+import HomeDashboard from "./Dashboard/HomeDashboard/HomeDashboard";
+import CounterInDashboard from "./Dashboard/ComponantDashboard/CounterInDashboard";
+import UserDashboard from "./Dashboard/UserDashboard/UserDashboard";
+import AddUserDashboard from "./Dashboard/UserDashboard/AddUserDashboard";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import UpdateUserDashboard from "./Dashboard/UserDashboard/UpdateUserDashboard";
+import CategoryDashboard from "./Dashboard/CategoryDashboard/CategoryDashboard";
+import AddCategoryDashboard from "./Dashboard/CategoryDashboard/AddCategoryDashboard";
+import UpdateCategoryDashboard from "./Dashboard/CategoryDashboard/UpdateCategoryDashboard";
+import ProductDashboard from "./Dashboard/ProductDashboard/ProductDashboard";
+import AddProduct from "./Dashboard/ProductDashboard/AddProduct";
+import UpdateProduct from "./Dashboard/ProductDashboard/UpdateProduct";
+import ProtectedDashboard from "./protectedRoute/ProductedDashboard";
 function App() {
   const router = createBrowserRouter([
     {
@@ -50,15 +64,68 @@ function App() {
         { path: "*", element: <NotFound /> },
       ],
     },
+    {
+      path: "/dashboard",
+      element: (
+        <ProtectedDashboard>
+          <HomeDashboard />
+        </ProtectedDashboard>
+      ),
+      children: [
+        {
+          path: "/dashboard",
+          element: <CounterInDashboard />,
+        },
+        {
+          path: "userdashboard",
+          element: <UserDashboard />,
+        },
+        {
+          path: "adduserdashboard",
+          element: <AddUserDashboard />,
+        },
+        {
+          path: "updateuserdashboard/:id",
+          element: <UpdateUserDashboard />,
+        },
+        {
+          path: "categorydashboard",
+          element: <CategoryDashboard />,
+        },
+        {
+          path: "addcategorydashboard",
+          element: <AddCategoryDashboard />,
+        },
+        {
+          path: "updatecategorydashboard/:id",
+          element: <UpdateCategoryDashboard />,
+        },
+        {
+          path: "productdashboard",
+          element: <ProductDashboard />,
+        },
+        {
+          path: "addproductdashboard",
+          element: <AddProduct />,
+        },
+        {
+          path: "updateproductdashboard/:id",
+          element: <UpdateProduct />,
+        },
+      ],
+    },
   ]);
-
+  let queryClient = new QueryClient();
   return (
     <>
-      <SearchProvider>
-        <ShoppingCartProvider>
-          <RouterProvider router={router}></RouterProvider>
-        </ShoppingCartProvider>
-      </SearchProvider>
+      <ToastContainer position="top-center" />
+      <QueryClientProvider client={queryClient}>
+        <SearchProvider>
+          <ShoppingCartProvider>
+            <RouterProvider router={router}></RouterProvider>
+          </ShoppingCartProvider>
+        </SearchProvider>
+      </QueryClientProvider>
     </>
   );
 }
