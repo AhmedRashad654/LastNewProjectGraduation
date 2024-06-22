@@ -26,8 +26,11 @@ export default function ProductItem({
 
   /////////////remove wish list////////
   async function handleRemove(id) {
-    const result = await removeFromWishList(id);
-    dispatch(setWishList(result?.data?.data?.products));
+    const result = await removeFromWishList( id );
+    if ( result ) {
+      dispatch(setWishList(result?.data?.data?.products));
+   }
+   
   }
   //////////wishlist from redux//////////
   const favorite = useSelector((state) => state?.favoriteproducts?.products);

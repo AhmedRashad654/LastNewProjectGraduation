@@ -29,8 +29,11 @@ function Details() {
   }
   /////////////remove wish list////////
   async function handleRemove() {
-    const result = await removeFromWishList(detailsprd?._id);
-    dispatch(setWishList(result?.data?.data?.products));
+    const result = await removeFromWishList( detailsprd?._id );
+    if ( result ) {
+       dispatch(setWishList(result?.data?.data?.products));
+    }
+   
   }
   /////////slider///////
   const settings = {

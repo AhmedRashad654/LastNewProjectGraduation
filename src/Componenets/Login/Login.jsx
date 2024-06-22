@@ -6,38 +6,40 @@ import { useForm } from "react-hook-form";
 import { request } from "../../axios/axios";
 import { toast } from "react-toastify";
 import { useSearch } from "../context/SearchContext";
-import { setWishList } from "../../slice/slice";
-import { useDispatch } from "react-redux";
-import { getAllWishList } from "../../api/api";
+import { useSelector } from "react-redux";
+import { useShoppingCart } from "../context/ShoppingCartContext";
 
 export default function Login() {
   const { setIsLoggedOut } = useSearch();
-  const dispatch = useDispatch();
-  async function getAllList() {
-    const result = await getAllWishList();
-    dispatch(setWishList(result?.data?.data?.products));
-  }
+  const { setCheckLogin } = useShoppingCart();
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm();
+  const favoriteProducts = useSelector(
+    (state) => state.favoriteproducts.products
+  );
   async function onSubmit(data) {
-    try {
-      const result = await request.post("/users/SignIn", data);
-      if (result?.data?.data?._id) {
-        toast.success("Login successful");
-        localStorage.setItem("token", result?.data?.token);
-        localStorage.setItem("roleUser", result?.data?.data?.role);
-        localStorage.setItem("user", JSON.stringify(result?.data?.data));
-        await getAllList();
-        setIsLoggedOut(true);
-      }
-    } catch (error) {
-      toast.error("Email or password is wrong");
-    }
+    await request
+      .post("/users/SignIn", data)
+      .then((result) => {
+        if (result?.data?.data?._id) {
+          toast.success("login successfuly");
+          localStorage.setItem("token", result?.data?.token);
+          localStorage.setItem("roleUser", result?.data?.data?.role);
+          localStorage.setItem("user", JSON.stringify(result?.data?.data));
+          setIsLoggedOut(true);
+          setCheckLogin(true);
+        }
+      })
+      .catch((error) => {
+        toast.error("email or password is Wrong");
+      });
   }
 
+  console.log( favoriteProducts );
+  
   return (
     <div className="row">
       <div className="col-lg-5 d-none d-lg-flex justify-content-center align-items-center mt-5">

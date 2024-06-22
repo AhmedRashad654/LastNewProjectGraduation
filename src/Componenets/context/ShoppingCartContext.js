@@ -58,8 +58,6 @@ const ShoppingCartProvider = ({ children }) => {
     );
   };
 
-
-
   const getTotalQuantity = () => {
     return cartItems.reduce((total, item) => total + item.quantity, 0);
   };
@@ -70,13 +68,15 @@ const ShoppingCartProvider = ({ children }) => {
     );
   };
   const removeAllCart = () => {
-    setCartItems([])
-  }
+    setCartItems([]);
+  };
+  const [checkLogin, setCheckLogin] = useState(false);
   return (
     <ShoppingCartContext.Provider
       value={{
         cartItems,
-    
+        checkLogin,
+        setCheckLogin,
         getItemsQuantity,
         increaseQuantity,
         decreaseQuantity,

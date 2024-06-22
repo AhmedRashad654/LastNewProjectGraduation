@@ -15,8 +15,11 @@ export default function Whislist() {
 
   ////////////remove wish list///////////////////////
   async function handleRemove(id) {
-    const result = await removeFromWishList(id);
-    dispatch(setWishList(result?.data?.data?.products));
+    const result = await removeFromWishList( id );
+    if ( result ) {
+       dispatch(setWishList(result?.data?.data?.products));
+    }
+   
   }
   if ( !favoriteProducts?.length ) return (
     <div className="flex justify-center items-center w-full h-full">
@@ -27,7 +30,7 @@ export default function Whislist() {
     <div className="my-1">
       <h4 className="my-3 font-bold">Your Wish List</h4>
       <div className="grid grid-cols-[repeat(auto-fit,_minmax(0,_250px))]  gap-4">
-        {favoriteProducts?.length > 0 &&
+        {favoriteProducts && favoriteProducts?.length > 0 &&
           favoriteProducts?.map((product) => (
             <div
               className={` mb-4 ${style.parent}`}
