@@ -1,5 +1,4 @@
 import {
-  Navigate,
   RouterProvider,
   createBrowserRouter,
 } from "react-router-dom";
@@ -39,16 +38,19 @@ import ProductDashboard from "./Dashboard/ProductDashboard/ProductDashboard";
 import AddProduct from "./Dashboard/ProductDashboard/AddProduct";
 import UpdateProduct from "./Dashboard/ProductDashboard/UpdateProduct";
 import ProtectedDashboard from "./protectedRoute/ProductedDashboard";
+import CategoryUser from "./Componenets/CategoryUser/CategoryUser";
+import OrdersDashboard from "./Dashboard/OrdersDashboard/OrdersDashboard";
+import Success from "./Componenets/success/Success";
 function App() {
   const router = createBrowserRouter([
     {
       path: "",
       element: <Layout />,
       children: [
-        { path: "", element: <Navigate to={"home"} /> },
+        { path: "", element: <Home/> },
         { path: "register", element: <Register /> },
         { path: "login", element: <Login /> },
-        { path: "home", element: <Home /> },
+       
         { path: "cart", element: <Cart /> },
         { path: "filters", element: <Filters /> },
         { path: "editprofile", element: <EditProfile /> },
@@ -61,6 +63,9 @@ function App() {
         { path: "bestesller", element: <Bestseller /> },
         { path: "details/:id", element: <Dettails /> },
         { path: "imagecards", element: <ImageCards /> },
+        { path: "/category/:id", element: <CategoryUser /> },
+        { path: "success", element: <Success/> },
+
         { path: "*", element: <NotFound /> },
       ],
     },
@@ -111,6 +116,10 @@ function App() {
         {
           path: "updateproductdashboard/:id",
           element: <UpdateProduct />,
+        },
+        {
+          path: "ordersdashboard",
+          element: <OrdersDashboard />,
         },
       ],
     },

@@ -27,16 +27,16 @@ export default function Register() {
       });
   }
   return (
-    <div className="row m-5">
-      <div className="col-lg-5 d-none d-lg-flex justify-content-center align-items-center">
+    <div className="row">
+      <div className="col-lg-5 d-none d-lg-flex justify-content-center align-items-center my-5">
         <img className="w-100 phone1" src={phone1} alt="" />
       </div>
 
-      <div className="col-lg-7">
+      <div className="col-lg-7 my-5">
         <div className=" d-flex justify-content-center align-items-center text-center signup-container">
-          <div className="bg-light bg-opacity-25 shadow w-100 mx-auto  p-5 rounded-2">
+          <div className="bg-light bg-opacity-25 shadow w-100 mx-auto  py-5 px-3 rounded-2">
             <h1 className="fw-bold">Create an Account</h1>
-            <div className="pt-3">
+            <div className="pt-3 ">
               <form>
                 <input
                   className="form-control my-2"
@@ -131,7 +131,7 @@ export default function Register() {
                 />
                 <button
                   type="submit"
-                  className="btn btn-info text-dark w-100 rounded-2 m-2"
+                  className="btn btn-info text-dark w-100 rounded-2 my-2"
                   onClick={handleSubmit(onSubmit)}
                 >
                   {isSubmitting ? "Loading..." : "Create Account"}

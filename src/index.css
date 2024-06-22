@@ -1,7 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+body{
+  overflow-x: hidden;
+}
+.containe{
+  width: 95%;
+  margin: auto;
+}
 .scrollbar::-webkit-scrollbar {
   width: 5px;
   height: 5px;

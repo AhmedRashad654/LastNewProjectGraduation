@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import './bestseller.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { addToFavorites, removeFromFavorites } from './../../slice/slice';
+import {  useSelector } from 'react-redux';
 import formatCurrency from '../formatcurrency';
 import { Button } from 'react-bootstrap';
 import { useShoppingCart } from '../context/ShoppingCartContext'; // Assuming you have a shopping cart context
@@ -15,7 +14,7 @@ function Bestseller() {
     const [products, setProducts] = useState([]);
     const [hoverProduct, setHoverProduct] = useState(null);
 
-    const dispatch = useDispatch();
+  
     const favoriteProducts = useSelector(state => state.favoriteproducts.products);
     const { getItemsQuantity, increaseQuantity, decreaseQuantity, removeItem } = useShoppingCart();
 
@@ -37,13 +36,6 @@ function Bestseller() {
         setHoverProduct(null);
     };
 
-    const handleToggleFavorite = (product) => {
-        if (isFavorite(product)) {
-            dispatch(removeFromFavorites(product));
-        } else {
-            dispatch(addToFavorites(product));
-        }
-    };
 
     const isFavorite = (product) => {
         return favoriteProducts.some(favProduct => favProduct.id === product.id);
@@ -78,7 +70,7 @@ function Bestseller() {
                                         </div>
                                     )}
                                     <div className='icons'>
-                                        <button onClick={() => handleToggleFavorite(product)} className="btn-icon favourit">
+                                        <button className="btn-icon favourit">
                                             {isFavorite(product) 
                                                 ? <FontAwesomeIcon icon={solidHeart} className="iconwishfavourit" /> 
                                                 : <FontAwesomeIcon icon={regularHeart} className="iconwish" />}

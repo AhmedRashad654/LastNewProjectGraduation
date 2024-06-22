@@ -33,14 +33,14 @@ export default function Login() {
       });
   }
   return (
-    <div className="row m-5">
-      <div className="col-lg-5 d-none d-lg-flex justify-content-center align-items-center ">
+    <div className="row">
+      <div className="col-lg-5 d-none d-lg-flex justify-content-center align-items-center mt-5">
         <img className="phone2 w-100" src={phone1} alt="" />
       </div>
 
-      <div className="col-lg-7">
+      <div className="col-lg-7 mt-5">
         <div className="d-flex justify-content-center align-items-center text-center signup-container">
-          <div className="bg-light bg-opacity-25 shadow w-100 mx-auto rounded-2 login">
+          <div className="bg-light bg-opacity-25 shadow w-100 mx-auto rounded-2 login px-3">
             <h1 className="fw-bold">Login Now</h1>
             <div className="pt-3">
               <form>
@@ -79,7 +79,7 @@ export default function Login() {
 
                 <button
                   type="submit"
-                  className="btn btn-info text-dark w-100 rounded-2 m-2"
+                  className="btn btn-info text-dark w-100 rounded-2 my-1"
                   onClick={handleSubmit(onSubmit)}
                 >
                   {isSubmitting ? "Loading..." : "Login"}

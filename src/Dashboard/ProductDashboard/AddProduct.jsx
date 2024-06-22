@@ -28,13 +28,14 @@ export default function AddProduct() {
   let { data } = useQuery("allCategoryDashboard", getAllCategory);
   //////////////end get category///////////
   /////////////end upload image///////
-  async function onSubmit( data ) {
-    console.log(data)
+  async function onSubmit(data) {
+   
     const formData = new FormData();
     formData.append("name", data?.name);
     formData.append("categoryId", data?.categoryId);
     formData.append("price", data?.price);
     formData.append("Quantity", data?.Quantity);
+    formData.append("description", data?.description);
     formData.append("image", image);
     if (Array.isArray(images)) {
       images.forEach((file) => {
@@ -46,13 +47,13 @@ export default function AddProduct() {
       }
     }
     await axios
-      .post( `${urlLocal}/products`, formData, {
+      .post(`${urlLocal}/products`, formData, {
         headers: {
-          Authorization:localStorage.getItem('token')
-        }
+          Authorization: localStorage.getItem("token"),
+        },
       })
       .then((result) => {
-        console.log(result);
+    
         if (result?.data?.message === "success") {
           toast.success("product create successfuly");
         }
@@ -116,6 +117,19 @@ export default function AddProduct() {
           )}
         </div>
         <div className="flex flex-col gap-1 my-2">
+          <label htmlFor="">Description</label>
+          <textarea
+            className="border border-slate-800 outline-none caret-slate-400 rounded-md py-1 px-2 placeholder:text-[14px]"
+            placeholder="description"
+            {...register("description", {
+              required: "description is required",
+            })}
+          />
+          {errors.description && (
+            <small className="text-red-400">{errors.description.message}</small>
+          )}
+        </div>
+        <div className="flex flex-col gap-1 my-2">
           <label htmlFor="">Quantity</label>
           <input
             type="text"
@@ -127,7 +141,7 @@ export default function AddProduct() {
           />
           {errors.Quantity && (
             <small className="text-red-400">{errors.Quantity.message}</small>
-          )}
+          ) }
         </div>
         <div className="flex flex-col gap-1 my-2">
           <label htmlFor="imageProduct" className="cursor-pointer">

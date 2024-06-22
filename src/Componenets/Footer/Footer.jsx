@@ -1,12 +1,12 @@
 import React from 'react';
 import './Footer.css';
-import img1 from "../../Assets/Google_Play_Badge.png";
-import img2 from "../../Assets/App_Store_Badge.png"
+// import img1 from "../../Assets/Google_Play_Badge.png";
+// import img2 from "../../Assets/App_Store_Badge.png"
 
 export default function Footer() {
   return (
     <footer className="footer">
-      <div className="footer-column">
+      {/* <div className="footer-column">
         <h3>TechnoCore</h3>
         <p>Subscribe</p>
         <p>Get 10% off your first order</p>
@@ -57,11 +57,11 @@ export default function Footer() {
             <i className="fab fa-linkedin-in"></i>
           </a>
         </div>
-      </div>
+      </div> */}
 
       <div className="footer-bottom">
-        <hr />
-        <p>© Copyright Rimel 2022. All rights reserved</p>
+        {/* <hr /> */}
+        <p>© Copyright Rimel 2024. All rights reserved</p>
       </div>
     </footer>
   );

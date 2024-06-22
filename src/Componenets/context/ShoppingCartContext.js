@@ -1,46 +1,75 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from "react";
 
 const ShoppingCartContext = createContext({});
 
 const ShoppingCartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
-
+  useEffect(() => {
+    if (localStorage.getItem("cart")) {
+      setCartItems(JSON.parse(localStorage.getItem("cart")));
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+  }, [cartItems]);
   const getItemsQuantity = (id) => {
-    return cartItems.find((item) => item.id === id)?.quantity || 0;
+    return cartItems.find((item) => item._id === id)?.quantity || 0;
   };
 
-  const increaseQuantity = (id) => {
+  const increaseQuantity = (product) => {
     setCartItems((currItems) => {
-      const existingItem = currItems.find((item) => item.id === id);
+      const existingItem = currItems.find((item) => item._id === product._id);
       if (!existingItem) {
-        return [...currItems, { id, quantity: 1 }];
+        return [
+          ...currItems,
+          {
+            _id: product._id,
+            quantity: 1,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+          },
+        ];
       } else {
         return currItems.map((item) =>
-          item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+          item._id === product._id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
         );
       }
     });
   };
-
-  const decreaseQuantity = (id) => {
+  const decreaseQuantity = (product) => {
     setCartItems((currItems) => {
       const updatedItems = currItems
         .map((item) =>
-          item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+          item._id === product._id
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
         )
         .filter((item) => item.quantity > 0);
       return updatedItems;
     });
   };
 
-  const removeItem = (id) => {
-    setCartItems((currItems) => currItems.filter((item) => item.id !== id));
+  const removeItem = (product) => {
+    setCartItems((currItems) =>
+      currItems.filter((item) => item._id !== product._id)
+    );
   };
 
   const getTotalQuantity = () => {
     return cartItems.reduce((total, item) => total + item.quantity, 0);
   };
-
+  const getTotalPrice = () => {
+    return cartItems.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+  };
+  const removeAllCart = () => {
+    setCartItems([])
+  }
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -50,6 +79,8 @@ const ShoppingCartProvider = ({ children }) => {
         decreaseQuantity,
         removeItem,
         getTotalQuantity,
+        getTotalPrice,
+        removeAllCart,
       }}
     >
       {children}
@@ -62,3 +93,4 @@ export default ShoppingCartProvider;
 export const useShoppingCart = () => {
   return useContext(ShoppingCartContext);
 };
+export { ShoppingCartContext };

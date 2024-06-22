@@ -66,7 +66,7 @@ export default function ProductDashboard() {
         <input
           type="text"
           className="border border-slate-400 rounded-md outline-none px-2  w-72  caret-slate-300 py-[1px]"
-          placeholder="search by name or phone"
+          placeholder="search by name"
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>

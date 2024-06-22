@@ -31,7 +31,6 @@ export default function CounterInDashboard() {
       });
     }
   let { data: dataProduct } = useQuery("counterProduct", getCountProduct);
- console.log(dataProduct)
   return (
     <div className="w-[95%]  mx-auto  mt-3">
       <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-5">

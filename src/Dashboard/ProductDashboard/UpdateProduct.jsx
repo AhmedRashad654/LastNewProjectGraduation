@@ -33,7 +33,9 @@ export default function UpdateProduct() {
     if (state?.data) {
       setValue("name", state.data.name || "");
       setValue("price", state.data.price || "");
-      setValue("Quantity", state.data.Quantity || "");
+      setValue( "Quantity", state.data.Quantity || "" );
+      setValue("description", state.data.description || "");
+      
     }
   }, [state, setValue]);
   //////////////////////
@@ -42,7 +44,9 @@ export default function UpdateProduct() {
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("price", data.price);
-    formData.append("Quantity", data.Quantity);
+    formData.append( "Quantity", data.Quantity );
+    formData.append("description", data.description);
+    
     formData.append("category", state.data.categoryId._id);
     if (uplaodImageLocal) {
       formData.append("image", uplaodImageLocal);
@@ -114,6 +118,19 @@ export default function UpdateProduct() {
           />
           {errors.Quantity && (
             <small className="text-red-400">{errors.Quantity.message}</small>
+          )}
+        </div>
+        <div className="flex flex-col gap-1">
+          <label htmlFor="">Description</label>
+          <textarea
+            className="border border-slate-800 outline-none caret-slate-400 rounded-md py-1 px-2 placeholder:text-[14px]"
+            placeholder="description"
+            {...register("description", {
+              required: "description is required",
+            })}
+          />
+          {errors.description && (
+            <small className="text-red-400">{errors.description.message}</small>
           )}
         </div>
         <div className="flex flex-col gap-1">
