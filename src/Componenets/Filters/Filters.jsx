@@ -6,10 +6,12 @@ import NotFound from "../NotFound/NotFound";
 import { request, url } from "../../axios/axios";
 import Loading from "../../ui/Loading";
 import { useSearch } from "../context/SearchContext";
+import { useNavigate } from "react-router-dom";
 
 const Filters = () => {
   const { searchQuery } = useSearch();
-  const [products, setProducts] = useState([]);
+  const [ products, setProducts ] = useState( [] );
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const { increaseQuantity, decreaseQuantity, removeItem, getItemsQuantity } =
     useShoppingCart();
@@ -23,7 +25,7 @@ const Filters = () => {
           setLoading(false);
         })
         .catch(() => setLoading(false));
-    } 
+    }
   }, [searchQuery]);
 
   if (loading) {
@@ -48,12 +50,30 @@ const Filters = () => {
                 <h5 className="card-title">{item.name}</h5>
                 <p>{item.price}</p>
                 <div className="d-flex align-items-center justify-content-between">
-                  <Button onClick={() => decreaseQuantity(item)} size="sm">
+                  <Button
+                    onClick={() => {
+                      if (localStorage.getItem("token")) {
+                        decreaseQuantity(item);
+                      } else {
+                        navigate("/login");
+                      }
+                    }}
+                    size="sm"
+                  >
                     -
                   </Button>
 
                   <span>{getItemsQuantity(item._id)} in cart</span>
-                  <Button onClick={() => increaseQuantity(item)} size="sm">
+                  <Button
+                    onClick={() => {
+                      if (localStorage.getItem("token")) {
+                        increaseQuantity(item);
+                      } else {
+                        navigate("/login");
+                      }
+                    }}
+                    size="sm"
+                  >
                     +
                   </Button>
                 </div>

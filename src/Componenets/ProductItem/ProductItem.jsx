@@ -67,16 +67,40 @@ export default function ProductItem({
               }`}
             >
               <div className="d-flex align-items-center justify-content-center">
-                <Button onClick={() => increaseQuantity(product)} size="sm">
+                <Button
+                  onClick={() => {
+                    if (localStorage.getItem("token")) {
+                      increaseQuantity(product);
+                    } else {
+                      navigate("/login");
+                    }
+                  }}
+                  size="sm"
+                >
                   +
                 </Button>
                 <span>{quantity} in cart</span>
-                <Button onClick={() => decreaseQuantity(product)} size="sm">
+                <Button
+                  onClick={() => {
+                    if (localStorage.getItem("token")) {
+                      decreaseQuantity(product);
+                    } else {
+                      navigate("/login");
+                    }
+                  }}
+                  size="sm"
+                >
                   -
                 </Button>
               </div>
               <Button
-                onClick={() => removeItem(product)}
+                onClick={() => {
+                  if (localStorage.getItem("token")) {
+                    removeItem(product);
+                  } else {
+                    navigate("/login");
+                  }
+                }}
                 variant="danger"
                 className="mt-2"
               >
