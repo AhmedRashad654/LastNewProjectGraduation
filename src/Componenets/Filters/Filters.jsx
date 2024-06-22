@@ -23,9 +23,7 @@ const Filters = () => {
           setLoading(false);
         })
         .catch(() => setLoading(false));
-    } else {
-      setLoading(false);
-    }
+    } 
   }, [searchQuery]);
 
   if (loading) {

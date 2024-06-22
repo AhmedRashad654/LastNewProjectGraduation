@@ -58,6 +58,8 @@ const ShoppingCartProvider = ({ children }) => {
     );
   };
 
+
+
   const getTotalQuantity = () => {
     return cartItems.reduce((total, item) => total + item.quantity, 0);
   };
@@ -74,6 +76,7 @@ const ShoppingCartProvider = ({ children }) => {
     <ShoppingCartContext.Provider
       value={{
         cartItems,
+    
         getItemsQuantity,
         increaseQuantity,
         decreaseQuantity,

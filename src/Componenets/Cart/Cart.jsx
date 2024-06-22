@@ -25,35 +25,36 @@ const Cart = () => {
       <>
         <h2 className="my-4">Your Shopping Cart</h2>
         <div className="grid grid-cols-[repeat(auto-fit,_minmax(0,_250px))]  gap-4">
-          {cartItems.map((item) => (
-            <div key={item._id} className="card">
+          { cartItems.map( ( item ) => (
+            <div key={ item._id } className="card">
               <img
-                src={`${url}/img/${item?.image}`}
+                src={ `${url}/img/${item?.image}` }
                 className="card-img-top object-cover h-48 w-full"
-                alt={item.name}
+                alt={ item.name }
               />
               <div className="card-body">
-                <h5 className="card-title">{item.name}</h5>
-                <p>{formatCurrency(item.price)}</p>
+                <h5 className="card-title">{ item.name }</h5>
+                <p>{ formatCurrency( item.price ) }</p>
                 <div className="d-flex align-items-center justify-content-between">
-                  <Button onClick={() => decreaseQuantity(item)} size="sm">
+                  <Button onClick={ () => decreaseQuantity( item ) } size="sm">
                     -
                   </Button>
-                  <span>{item.quantity} in cart</span>
-                  <Button onClick={() => increaseQuantity(item)} size="sm">
+                  <span>{ item.quantity } in cart</span>
+                  <Button onClick={ () => increaseQuantity( item ) } size="sm">
                     +
                   </Button>
                 </div>
                 <Button
-                  onClick={() => removeItem(item)}
+                  onClick={ () => removeItem( item ) }
                   variant="danger"
                   className="mt-2"
                 >
                   Remove
                 </Button>
               </div>
+          
             </div>
-          ))}
+         ) )}
         </div>
         <p className="w-full mt-3 mb-2 font-semibold text-center bg-gray-300 p-1 rounded-md">
           Total Price : {formatCurrency(getTotalPrice())}

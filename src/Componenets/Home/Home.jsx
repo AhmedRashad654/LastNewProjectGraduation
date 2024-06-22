@@ -43,6 +43,10 @@ export default function Home() {
         <h6 className={style.title}>This Month</h6>
       </div>
 
+      <div className={`${style.bestSellingProductsContainer} w-full mb-8`}>
+        <h3> Products</h3>
+      </div>
+
       <div>
         <Products />
       </div>
