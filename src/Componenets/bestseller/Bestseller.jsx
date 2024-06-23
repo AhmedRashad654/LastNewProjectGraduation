@@ -15,11 +15,12 @@ function Bestseller() {
     const [hoverProduct, setHoverProduct] = useState(null);
 
   
-    const favoriteProducts = useSelector(state => state.favoriteproducts.products);
+    //const favoriteProducts = useSelector(state => state?.favoriteproducts?.products);
+
     const { getItemsQuantity, increaseQuantity, decreaseQuantity, removeItem } = useShoppingCart();
 
     useEffect(() => {
-        axios.get("https://api.escuelajs.co/api/v1/products")
+        axios.get("http://localhost:3000/products/bestSelling")
             .then((res) => {
                 setProducts(res.data);
             })
@@ -37,51 +38,51 @@ function Bestseller() {
     };
 
 
-    const isFavorite = (product) => {
-        return favoriteProducts.some(favProduct => favProduct.id === product.id);
-    };
+    {/*const isFavorite = (product) => {
+        return favoriteProducts.some(favProduct => favProduct?.id === product?.id);
+    };*/}
 
     return (
         <div>
             <div className="row row-cols-1 row-cols-md-4 g-4">
                 {products.slice(0, 4).map((product) => {
-                    const quantity = getItemsQuantity(product.id);
+                    const quantity = getItemsQuantity(product._id);
                     return (
-                        <div key={product.id} className="col">
+                        <div key={product._id} className="col">
                             <div
-                                onMouseOver={() => handleMouseOver(product.id)}
+                                onMouseOver={() => handleMouseOver(product._id)}
                                 onMouseOut={handleMouseOut}
                                 className="card no-border"
                             >
                                 <div className='position-relative'>
-                                    <img src={product.images[0]} className="card-img-top" alt={product.title} />
+                                    <img src={product.image} className="card-img-top" alt={product.name} />
                                     {quantity === 0 ? (
-                                        <Button onClick={() => increaseQuantity(product.id)} className={`btn btn-dark w-100 showbutton ${hoverProduct === product.id ? 'd-block' : 'd-none'}`}>
+                                        <Button onClick={() => increaseQuantity(product._id)} className={`btn btn-dark w-100 showbutton ${hoverProduct === product._id ? 'd-block' : 'd-none'}`}>
                                             Add to Cart
                                         </Button>
                                     ) : (
-                                        <div className={`w-100 ${hoverProduct === product.id ? 'd-block' : 'd-none'}`}>
+                                        <div className={`w-100 ${hoverProduct === product._id ? 'd-block' : 'd-none'}`}>
                                             <div className="d-flex align-items-center justify-content-center">
-                                                <Button onClick={() => increaseQuantity(product.id)} size='sm'>+</Button>
+                                                <Button onClick={() => increaseQuantity(product._id)} size='sm'>+</Button>
                                                 <span>{quantity} in cart</span>
-                                                <Button onClick={() => decreaseQuantity(product.id)} size='sm'>-</Button>
+                                                <Button onClick={() => decreaseQuantity(product._id)} size='sm'>-</Button>
                                             </div>
-                                            <Button onClick={() => removeItem(product.id)} variant="danger" className="mt-2">Remove</Button>
+                                            <Button onClick={() => removeItem(product._id)} variant="danger" className="mt-2">Remove</Button>
                                         </div>
                                     )}
                                     <div className='icons'>
-                                        <button className="btn-icon favourit">
+                                        {/*<button className="btn-icon favourit">
                                             {isFavorite(product) 
                                                 ? <FontAwesomeIcon icon={solidHeart} className="iconwishfavourit" /> 
                                                 : <FontAwesomeIcon icon={regularHeart} className="iconwish" />}
-                                        </button>
-                                        <Link to={`/details/${product.id}`}>
+                                        </button>*/}
+                                        {/*<Link to={`/details/${product._id}`}>
                                             <FontAwesomeIcon icon={faEye} className="icondetails" />
-                                        </Link>
+                                        </Link>*/}
                                     </div>
                                 </div>
                                 <div className="card-body">
-                                    <h5 className="card-title">{product.title}</h5>
+                                    <h5 className="card-title">{product.name}</h5>
                                     <p>{formatCurrency(product.price)}</p>
                                 </div>
                             </div>

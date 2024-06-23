@@ -41,6 +41,8 @@ import ProtectedDashboard from "./protectedRoute/ProductedDashboard";
 import CategoryUser from "./Componenets/CategoryUser/CategoryUser";
 import OrdersDashboard from "./Dashboard/OrdersDashboard/OrdersDashboard";
 import Success from "./Componenets/success/Success";
+import ForgetPassword from './Componenets/ForgetPassword/ForgetPassword';
+import ForgetPasswordThree from './Componenets/ForgetPasswordThree/ForgetPasswordThree';
 function App() {
   const router = createBrowserRouter([
     {
@@ -65,6 +67,8 @@ function App() {
         { path: "imagecards", element: <ImageCards /> },
         { path: "/category/:id", element: <CategoryUser /> },
         { path: "success", element: <Success/> },
+        { path: "forgetpassword", element: <ForgetPassword/> },
+        { path: "resetPassword/:token", element: <ForgetPasswordThree/> },
 
         { path: "*", element: <NotFound /> },
       ],

@@ -81,9 +81,9 @@ export default function Login() {
                   </small>
                 )}
                 <br />
-                <button className=" border-0 bg-transparent text-danger mt-2">
+                <Link to={'/forgetpassword'}><button className=" border-0 bg-transparent text-danger mt-2">
                   Forget Password?
-                </button>
+                </button></Link>
 
                 <button
                   type="submit"
