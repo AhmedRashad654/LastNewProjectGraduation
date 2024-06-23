@@ -21,16 +21,18 @@ export default function CounterInDashboard() {
       },
     });
   }
-    let { data: dataCategory } = useQuery("counterCategory", getCountCategory);
+  let { data: dataCategory } = useQuery("counterCategory", getCountCategory);
   //////////product////////////
-    function getCountProduct() {
-      return request.get("/products/count", {
-        headers: {
-          Authorization: localStorage.getItem("token"),
-        },
-      });
-    }
+  function getCountProduct() {
+    return request.get("/products/count", {
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    });
+  }
   let { data: dataProduct } = useQuery("counterProduct", getCountProduct);
+  //////////order////////////
+
   return (
     <div className="w-[95%]  mx-auto  mt-3">
       <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-5">
@@ -51,7 +53,7 @@ export default function CounterInDashboard() {
         />
         <ItemCounterInDashboard
           name={"orders"}
-          counter={60}
+          counter={""}
           color={"#bd7e7e"}
         />
       </div>

@@ -4,6 +4,7 @@ import "./Navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MdDashboard } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
+import { FaFirstOrder } from "react-icons/fa6";
 import {
   faHeart,
   faShoppingCart,
@@ -31,8 +32,10 @@ export default function Navbar() {
   //////////////////
   function handleLogout() {
     localStorage.clear();
-    window.location.reload()
+     navigate("/");
+    window.location.reload();
     setIsLoggedOut( true );
+   
   }
   //////////////
   useEffect(() => {
@@ -59,6 +62,12 @@ export default function Navbar() {
         />
       </div>
       <div className="navbar-icons me-5">
+        {localStorage.getItem("token") && (
+          <Link className="navbar-icon user" to={"/orders"}>
+            {" "}
+            <FaFirstOrder />
+          </Link>
+        )}
         {localStorage.getItem("token") && (
           <Link to={"/whislist"} className="navbar-icon">
             <FontAwesomeIcon icon={faHeart} />

@@ -29,13 +29,16 @@ export default function AddProduct() {
   //////////////end get category///////////
   /////////////end upload image///////
   async function onSubmit(data) {
-   
     const formData = new FormData();
     formData.append("name", data?.name);
     formData.append("categoryId", data?.categoryId);
     formData.append("price", data?.price);
     formData.append("Quantity", data?.Quantity);
     formData.append("description", data?.description);
+    formData.append("offres", data?.offres);
+    formData.append("isExclusive", data?.isExclusive);
+    formData.append("priceAfterOffer", data?.priceAfterOffer);
+
     formData.append("image", image);
     if (Array.isArray(images)) {
       images.forEach((file) => {
@@ -53,7 +56,6 @@ export default function AddProduct() {
         },
       })
       .then((result) => {
-    
         if (result?.data?.message === "success") {
           toast.success("product create successfuly");
         }
@@ -97,15 +99,15 @@ export default function AddProduct() {
             ))}
           </select>
 
-          {errors.category && (
-            <small className="text-red-400">{errors.category.message}</small>
+          {errors.categoryId && (
+            <small className="text-red-400">{errors.categoryId.message}</small>
           )}
         </div>
 
         <div className="flex flex-col gap-1 my-2">
           <label htmlFor="">price</label>
           <input
-            type="text"
+            type="number"
             className="border border-slate-800 outline-none caret-slate-400 rounded-md py-1 px-2 placeholder:text-[14px]"
             placeholder="price"
             {...register("price", {
@@ -130,6 +132,42 @@ export default function AddProduct() {
           )}
         </div>
         <div className="flex flex-col gap-1 my-2">
+          <label htmlFor="">isExclusive</label>
+          <select
+            {...register("isExclusive")}
+            className="border border-slate-800 outline-none caret-slate-400 rounded-md py-1 px-2 placeholder:text-[14px]"
+          >
+            <option value="">choose</option>
+            <option value="false">false</option>
+            <option value="true">true</option>
+          </select>
+        </div>
+        <div className="flex flex-col gap-1 my-2">
+          <label htmlFor="">offers</label>
+          <select
+            {...register("offres")}
+            className="border border-slate-800 outline-none caret-slate-400 rounded-md py-1 px-2 placeholder:text-[14px]"
+          >
+            <option value="">choose</option>
+            <option value="false">false</option>
+            <option value="true">true</option>
+          </select>
+        </div>
+        <div className="flex flex-col gap-1 my-2">
+          <label htmlFor="">priceAfterOffer</label>
+          <input
+            type="number"
+            className="border border-slate-800 outline-none caret-slate-400 rounded-md py-1 px-2 placeholder:text-[14px]"
+            placeholder="priceAfterOffer"
+            {...register("priceAfterOffer")}
+          />
+          {errors.priceAfterOffer && (
+            <small className="text-red-400">
+              {errors.priceAfterOffer.message}
+            </small>
+          )}
+        </div>
+        <div className="flex flex-col gap-1 my-2">
           <label htmlFor="">Quantity</label>
           <input
             type="text"
@@ -137,11 +175,15 @@ export default function AddProduct() {
             placeholder="Quantity"
             {...register("Quantity", {
               required: "Quantity is required",
+              max: {
+                value: 255,
+                message: "max length 255",
+              },
             })}
           />
           {errors.Quantity && (
             <small className="text-red-400">{errors.Quantity.message}</small>
-          ) }
+          )}
         </div>
         <div className="flex flex-col gap-1 my-2">
           <label htmlFor="imageProduct" className="cursor-pointer">

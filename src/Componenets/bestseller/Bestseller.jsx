@@ -1,98 +1,50 @@
-import React, { useEffect, useState } from 'react';
-import axios from "axios";
-import { Link } from 'react-router-dom';
-import './bestseller.css';
-import {  useSelector } from 'react-redux';
-import formatCurrency from '../formatcurrency';
-import { Button } from 'react-bootstrap';
-import { useShoppingCart } from '../context/ShoppingCartContext'; // Assuming you have a shopping cart context
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart as solidHeart, faEye } from '@fortawesome/free-solid-svg-icons';
-import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
+import React, { useEffect, useState } from "react";
+import "./bestseller.css";
+import { request } from "../../axios/axios";
+import ProductItem from "../ProductItem/ProductItem";
 
 function Bestseller() {
-    const [products, setProducts] = useState([]);
-    const [hoverProduct, setHoverProduct] = useState(null);
-
-  
-    //const favoriteProducts = useSelector(state => state?.favoriteproducts?.products);
-
-    const { getItemsQuantity, increaseQuantity, decreaseQuantity, removeItem } = useShoppingCart();
-
-    useEffect(() => {
-        axios.get("http://localhost:3000/products/bestSelling")
-            .then((res) => {
-                setProducts(res.data);
-            })
-            .catch((error) => {
-                console.error('Error fetching products:', error);
-            });
-    }, []);
-
-    const handleMouseOver = (productId) => {
-        setHoverProduct(productId);
-    };
-
-    const handleMouseOut = () => {
-        setHoverProduct(null);
-    };
+  const [products, setProducts] = useState([]);
+  const [hoverProduct, setHoverProduct] = useState(null);
 
 
-    {/*const isFavorite = (product) => {
-        return favoriteProducts.some(favProduct => favProduct?.id === product?.id);
-    };*/}
 
-    return (
-        <div>
-            <div className="row row-cols-1 row-cols-md-4 g-4">
-                {products.slice(0, 4).map((product) => {
-                    const quantity = getItemsQuantity(product._id);
-                    return (
-                        <div key={product._id} className="col">
-                            <div
-                                onMouseOver={() => handleMouseOver(product._id)}
-                                onMouseOut={handleMouseOut}
-                                className="card no-border"
-                            >
-                                <div className='position-relative'>
-                                    <img src={product.image} className="card-img-top" alt={product.name} />
-                                    {quantity === 0 ? (
-                                        <Button onClick={() => increaseQuantity(product._id)} className={`btn btn-dark w-100 showbutton ${hoverProduct === product._id ? 'd-block' : 'd-none'}`}>
-                                            Add to Cart
-                                        </Button>
-                                    ) : (
-                                        <div className={`w-100 ${hoverProduct === product._id ? 'd-block' : 'd-none'}`}>
-                                            <div className="d-flex align-items-center justify-content-center">
-                                                <Button onClick={() => increaseQuantity(product._id)} size='sm'>+</Button>
-                                                <span>{quantity} in cart</span>
-                                                <Button onClick={() => decreaseQuantity(product._id)} size='sm'>-</Button>
-                                            </div>
-                                            <Button onClick={() => removeItem(product._id)} variant="danger" className="mt-2">Remove</Button>
-                                        </div>
-                                    )}
-                                    <div className='icons'>
-                                        {/*<button className="btn-icon favourit">
-                                            {isFavorite(product) 
-                                                ? <FontAwesomeIcon icon={solidHeart} className="iconwishfavourit" /> 
-                                                : <FontAwesomeIcon icon={regularHeart} className="iconwish" />}
-                                        </button>*/}
-                                        {/*<Link to={`/details/${product._id}`}>
-                                            <FontAwesomeIcon icon={faEye} className="icondetails" />
-                                        </Link>*/}
-                                    </div>
-                                </div>
-                                <div className="card-body">
-                                    <h5 className="card-title">{product.name}</h5>
-                                    <p>{formatCurrency(product.price)}</p>
-                                </div>
-                            </div>
-                        </div>
-                    );
-                })}
-            </div>
-        </div>
-    );
+
+  useEffect(() => {
+    request
+      .get("/products/bestSelling")
+      .then((res) => {
+        setProducts(res.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching products:", error);
+      });
+  }, []);
+
+  const handleMouseOver = (productId) => {
+    setHoverProduct(productId);
+  };
+
+  const handleMouseOut = () => {
+    setHoverProduct(null);
+  };
+
+
+  return (
+    <div>
+      <div className="row row-cols-1 row-cols-md-4 g-4">
+        {products.map((product) => (
+          <ProductItem
+            key={product._id}
+            product={product}
+            hoverProduct={hoverProduct}
+            handleMouseOver={handleMouseOver}
+            handleMouseOut={handleMouseOut}
+          />
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export default Bestseller;
-

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import phone1 from "../../Assets/phone1.png";
 import "./Register.css";
 import { useForm } from "react-hook-form";
@@ -12,6 +12,7 @@ export default function Register() {
     watch,
     formState: { errors, isSubmitting },
   } = useForm();
+  const navigate = useNavigate();
   const password = watch("password");
   async function onSubmit(data) {
     await request
@@ -19,11 +20,14 @@ export default function Register() {
       .then((result) => {
         console.log(result);
         if (result?.data?.data?._id) {
+          navigate("/login");
           toast.success("Create Account successfuly");
         }
       })
       .catch((error) => {
-        toast.error(error?.response?.message);
+        toast.error(error?.response?.data?.error);
+        toast.error("😂😒 بس بنسبة كبيرة عمل الايميل Nodemailer مشكلة في ");
+        navigate("/login");
       });
   }
   return (

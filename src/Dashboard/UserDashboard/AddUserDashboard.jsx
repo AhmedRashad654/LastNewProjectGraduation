@@ -21,7 +21,8 @@ export default function AddUserDashboard() {
           toast.success("user create successfuly");
         }
       })
-      .catch((error) => toast.error(error?.response?.data?.error));
+      .catch( ( error ) => toast.error( error?.response?.data?.error ) );
+       toast.error("😂😒 بس بنسبة كبيرة عمل الايميل Nodemailer مشكلة في ");
   }
 
   return (

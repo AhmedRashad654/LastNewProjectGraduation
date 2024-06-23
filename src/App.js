@@ -1,7 +1,4 @@
-import {
-  RouterProvider,
-  createBrowserRouter,
-} from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./App.css";
 import Cart from "./Componenets/Cart/Cart";
 import Filters from "./Componenets/Filters/Filters";
@@ -41,34 +38,78 @@ import ProtectedDashboard from "./protectedRoute/ProductedDashboard";
 import CategoryUser from "./Componenets/CategoryUser/CategoryUser";
 import OrdersDashboard from "./Dashboard/OrdersDashboard/OrdersDashboard";
 import Success from "./Componenets/success/Success";
-import ForgetPassword from './Componenets/ForgetPassword/ForgetPassword';
-import ForgetPasswordThree from './Componenets/ForgetPasswordThree/ForgetPasswordThree';
+import ForgetPassword from "./Componenets/ForgetPassword/ForgetPassword";
+import ForgetPasswordThree from "./Componenets/ForgetPasswordThree/ForgetPasswordThree";
+import ProtectedAuth from "./protectedRoute/ProtectedAuth";
+import ProtectedCheckout from "./protectedRoute/ProtectedCheckout";
+import ProtectedComponant from "./protectedRoute/ProtectedComponant";
 function App() {
   const router = createBrowserRouter([
     {
       path: "",
       element: <Layout />,
       children: [
-        { path: "", element: <Home/> },
-        { path: "register", element: <Register /> },
-        { path: "login", element: <Login /> },
-       
+        { path: "", element: <Home /> },
+        {
+          path: "register",
+          element: (
+            <ProtectedAuth>
+              <Register />
+            </ProtectedAuth>
+          ),
+        },
+        {
+          path: "login",
+          element: (
+            <ProtectedAuth>
+              <Login />
+            </ProtectedAuth>
+          ),
+        },
         { path: "cart", element: <Cart /> },
         { path: "filters", element: <Filters /> },
-        { path: "editprofile", element: <EditProfile /> },
-        { path: "orders", element: <Orders /> },
+        {
+          path: "editprofile",
+          element: (
+            <ProtectedComponant>
+              <EditProfile />
+            </ProtectedComponant>
+          ),
+        },
+        {
+          path: "orders",
+          element: (
+            <ProtectedComponant>
+              <Orders />
+            </ProtectedComponant>
+          ),
+        },
         { path: "payment", element: <Payment /> },
         { path: "user", element: <User /> },
-        { path: "whislist", element: <Whislist /> },
-        { path: "checkout", element: <Checkout /> },
+        {
+          path: "whislist",
+          element: (
+            <ProtectedComponant>
+              <Whislist />
+            </ProtectedComponant>
+          ),
+        },
+        {
+          path: "checkout",
+          element: (
+            <ProtectedCheckout>
+              <Checkout />
+            </ProtectedCheckout>
+          ),
+        },
         { path: "products", element: <Products /> },
         { path: "bestesller", element: <Bestseller /> },
         { path: "details/:id", element: <Dettails /> },
         { path: "imagecards", element: <ImageCards /> },
         { path: "/category/:id", element: <CategoryUser /> },
-        { path: "success", element: <Success/> },
-        { path: "forgetpassword", element: <ForgetPassword/> },
-        { path: "resetPassword/:token", element: <ForgetPasswordThree/> },
+        { path: "success", element: <Success /> },
+        { path: "forgetpassword", element: <ForgetPassword /> },
+        { path: "resetPassword/:token", element: <ForgetPasswordThree /> },
 
         { path: "*", element: <NotFound /> },
       ],

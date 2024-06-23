@@ -18,7 +18,7 @@ export default function ProductDashboard() {
     getAllProduct
   );
   /////////////end get All product///////////////
-  console.log(data);
+
   /////////start delete User////////////
   async function handleDelete(id) {
     swal({
@@ -79,6 +79,8 @@ export default function ProductDashboard() {
               <th className="px-6 py-3">Quantity</th>
               <th className="px-6 py-3">price</th>
               <th className="px-6 py-3">image</th>
+              <th className="px-6 py-4">offers</th>
+              <th className="px-6 py-4">isExclusive</th>
               <th className="px-6 py-3">action</th>
             </tr>
           </thead>
@@ -104,7 +106,12 @@ export default function ProductDashboard() {
                           className="w-14"
                         />
                       </td>
-
+                      <td className="px-6 py-4">
+                        {user?.offres ? "true" : "false"}
+                      </td>
+                      <td className="px-6 py-4">
+                        {user?.isExclusive ? "true" : "false"}
+                      </td>
                       <td className="px-6 py-4 flex gap-2">
                         <button
                           className="font-medium text-red-600 "
@@ -141,13 +148,18 @@ export default function ProductDashboard() {
                       <td className="px-6 py-4">{user?.categoryId?.name}</td>
                       <td className="px-6 py-4">{user?.Quantity}</td>
                       <td className="px-6 py-4">{user?.price}</td>
-
                       <td className="px-6 py-4">
                         <img
                           src={`${url}/img/${user?.image}`}
                           alt="product"
                           className="w-14"
                         />
+                      </td>
+                      <td className="px-6 py-4">
+                        {user?.offres ? "true" : "false"}
+                      </td>
+                      <td className="px-6 py-4">
+                        {user?.isExclusive ? "true" : "false"}
                       </td>
 
                       <td className="px-6 py-4 flex gap-2">

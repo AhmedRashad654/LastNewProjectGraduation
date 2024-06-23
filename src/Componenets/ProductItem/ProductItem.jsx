@@ -30,7 +30,6 @@ export default function ProductItem({
     if ( result ) {
       dispatch(setWishList(result?.data?.data?.products));
    }
-   
   }
   //////////wishlist from redux//////////
   const favorite = useSelector((state) => state?.favoriteproducts?.products);

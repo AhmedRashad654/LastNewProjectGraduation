@@ -34,7 +34,11 @@ export default function UpdateProduct() {
       setValue("name", state.data.name || "");
       setValue("price", state.data.price || "");
       setValue( "Quantity", state.data.Quantity || "" );
-      setValue("description", state.data.description || "");
+      setValue( "description", state.data.description || "" );
+      setValue("priceAfterOffer", state.data.priceAfterOffer || "");
+      setValue("offres", state.data.offres || "");
+      setValue("isExclusive", state.data.isExclusive || "");
+      
       
     }
   }, [state, setValue]);
@@ -46,8 +50,10 @@ export default function UpdateProduct() {
     formData.append("price", data.price);
     formData.append( "Quantity", data.Quantity );
     formData.append("description", data.description);
-    
-    formData.append("category", state.data.categoryId._id);
+    formData.append("priceAfterOffer", data.priceAfterOffer);
+    formData.append("offres", data.offres);
+    formData.append("isExclusive", data.isExclusive);
+    formData.append("categoryId", state.data.categoryId._id);
     if (uplaodImageLocal) {
       formData.append("image", uplaodImageLocal);
     }
@@ -82,7 +88,7 @@ export default function UpdateProduct() {
         <HeaderTable navigateTo={"-1"} name={"back"} title={"update product"} />
       </div>
       <div>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-1 my-2">
           <label htmlFor="">Name</label>
           <input
             type="text"
@@ -94,10 +100,10 @@ export default function UpdateProduct() {
             <small className="text-red-400">{errors.name.message}</small>
           )}
         </div>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-1 my-2">
           <label htmlFor="">price</label>
           <input
-            type="text"
+            type="number"
             className="border border-slate-800 outline-none caret-slate-400 rounded-md py-1 px-2 placeholder:text-[14px]"
             placeholder="price"
             {...register("price", { required: "price is required" })}
@@ -106,7 +112,7 @@ export default function UpdateProduct() {
             <small className="text-red-400">{errors.price.message}</small>
           )}
         </div>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-1 my-2">
           <label htmlFor="">Quantity</label>
           <input
             type="text"
@@ -120,7 +126,7 @@ export default function UpdateProduct() {
             <small className="text-red-400">{errors.Quantity.message}</small>
           )}
         </div>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-1 my-2">
           <label htmlFor="">Description</label>
           <textarea
             className="border border-slate-800 outline-none caret-slate-400 rounded-md py-1 px-2 placeholder:text-[14px]"
@@ -133,7 +139,43 @@ export default function UpdateProduct() {
             <small className="text-red-400">{errors.description.message}</small>
           )}
         </div>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-1 my-2">
+          <label htmlFor="">isExclusive</label>
+          <select
+            {...register("isExclusive")}
+            className="border border-slate-800 outline-none caret-slate-400 rounded-md py-1 px-2 placeholder:text-[14px]"
+          >
+            <option value="">choose</option>
+            <option value="false">false</option>
+            <option value="true">true</option>
+          </select>
+        </div>
+        <div className="flex flex-col gap-1 my-2">
+          <label htmlFor="">offers</label>
+          <select
+            {...register("offres")}
+            className="border border-slate-800 outline-none caret-slate-400 rounded-md py-1 px-2 placeholder:text-[14px]"
+          >
+            <option value="">choose</option>
+            <option value="false">false</option>
+            <option value="true">true</option>
+          </select>
+        </div>
+        <div className="flex flex-col gap-1 my-2">
+          <label htmlFor="">priceAfterOffer</label>
+          <input
+            type="number"
+            className="border border-slate-800 outline-none caret-slate-400 rounded-md py-1 px-2 placeholder:text-[14px]"
+            placeholder="priceAfterOffer"
+            {...register("priceAfterOffer")}
+          />
+          {errors.priceAfterOffer && (
+            <small className="text-red-400">
+              {errors.priceAfterOffer.message}
+            </small>
+          )}
+        </div>
+        <div className="flex flex-col gap-1 my-2">
           <label htmlFor="updateCategory" className="cursor-pointer">
             image
           </label>
@@ -157,6 +199,7 @@ export default function UpdateProduct() {
             onChange={handleImgs}
           />
         </div>
+
         <div>
           <button
             className="bg-buttonDashboard w-full mt-3 rounded-md p-1 duration-150 transition-all text-white font-semibold hover:bg-purple-700"

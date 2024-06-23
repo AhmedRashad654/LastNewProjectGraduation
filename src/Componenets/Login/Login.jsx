@@ -1,7 +1,7 @@
 import React from "react";
 import phone1 from "../../Assets/phone1.png";
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { request } from "../../axios/axios";
 import { toast } from "react-toastify";
@@ -11,6 +11,7 @@ import { useShoppingCart } from "../context/ShoppingCartContext";
 
 export default function Login() {
   const { setIsLoggedOut } = useSearch();
+  const navigate = useNavigate()
   const { setCheckLogin } = useShoppingCart();
   const {
     register,
@@ -30,16 +31,21 @@ export default function Login() {
           localStorage.setItem("roleUser", result?.data?.data?.role);
           localStorage.setItem("user", JSON.stringify(result?.data?.data));
           setIsLoggedOut(true);
-          setCheckLogin(true);
+          setCheckLogin( true );
+          if ( result?.data?.data?.role === "Admin" ) {
+            navigate("/dashboard");
+          } else {
+            navigate("/");
+          }
         }
       })
       .catch((error) => {
-        toast.error("email or password is Wrong");
+        toast.error(error?.response?.data?.error)
       });
   }
 
-  console.log( favoriteProducts );
-  
+  console.log(favoriteProducts);
+
   return (
     <div className="row">
       <div className="col-lg-5 d-none d-lg-flex justify-content-center align-items-center mt-5">
@@ -81,9 +87,11 @@ export default function Login() {
                   </small>
                 )}
                 <br />
-                <Link to={'/forgetpassword'}><button className=" border-0 bg-transparent text-danger mt-2">
-                  Forget Password?
-                </button></Link>
+                <Link to={"/forgetpassword"}>
+                  <button className=" border-0 bg-transparent text-danger mt-2">
+                    Forget Password?
+                  </button>
+                </Link>
 
                 <button
                   type="submit"
