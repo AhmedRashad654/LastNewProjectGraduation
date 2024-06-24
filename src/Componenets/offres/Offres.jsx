@@ -1,8 +1,8 @@
-
 import React, { useState } from "react";
 import { request } from "../../axios/axios";
 import ProductItem from "../ProductItem/ProductItem";
 import { useQuery } from "react-query";
+import "tailwindcss/tailwind.css"; // Import Tailwind CSS
 
 function Offres() {
   const [hoverProduct, setHoverProduct] = useState(null);
@@ -27,22 +27,25 @@ function Offres() {
     data?.data?.data?.filter((product) => product.offres) || [];
 
   return (
-    <div>
-       
-      <div className="row row-cols-1 row-cols-md-4 g-4 mt-3">
+    <div className="container mx-auto mt-3">
+      <div className="flex flex-wrap -mx-3">
         {offresProducts.length > 0 ? (
           offresProducts.map((product) => (
-            <ProductItem
+            <div
               key={product._id}
-              product={product}
-              hoverProduct={hoverProduct}
-              handleMouseOver={handleMouseOver}
-              handleMouseOut={handleMouseOut}
-              isExclusive={true}
-            />
+              className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-3 mb-6"
+            >
+              <ProductItem
+                product={product}
+                hoverProduct={hoverProduct}
+                handleMouseOver={handleMouseOver}
+                handleMouseOut={handleMouseOut}
+                isExclusive={true}
+              />
+            </div>
           ))
         ) : (
-          <h1 className="text-center w-100">No offers products here</h1>
+          <h1 className="text-center w-full">No offers products here</h1>
         )}
       </div>
     </div>
