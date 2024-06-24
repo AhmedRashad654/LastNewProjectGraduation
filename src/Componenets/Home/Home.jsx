@@ -8,6 +8,8 @@ import Bestseller from "../bestseller/Bestseller";
 import HomeSlider from "../HomeSlider/HomeSlider";
 import Products from "../products/products";
 import HeaderCategory from "../HeaderCategory/HeaderCategory";
+import Exclusive from "../exclusive/Exclusive";
+import Offres from "../offres/Offres";
 
 export default function Home() {
   // const [products, setProducts] = useState([]);
@@ -53,6 +55,37 @@ export default function Home() {
       <div>
         <Products />
       </div>
+
+      <div className={`${style.shapeContainer} mt-16`}>
+        <div className={style.Rectangle}></div>
+        <h6 className={style.title}>This week</h6>
+      </div>
+
+      <div className={`${style.bestSellingProductsContainer} w-full mb-8`}>
+        <h3> Our Exclusive Products </h3>
+      </div>
+
+      <div>
+        <Exclusive/>
+      </div>
+
+
+
+
+      <div className={`${style.shapeContainer} mt-16`}>
+        <div className={style.Rectangle}></div>
+        <h6 className={style.title}>This week</h6>
+      </div>
+
+      <div className={`${style.bestSellingProductsContainer} w-full mb-8`}>
+        <h3> Our Offres Products </h3>
+      </div>
+
+      <div>
+        <Offres/>
+      </div>
+
+
     </div>
   );
 }

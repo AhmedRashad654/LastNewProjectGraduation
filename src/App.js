@@ -43,6 +43,8 @@ import ForgetPasswordThree from "./Componenets/ForgetPasswordThree/ForgetPasswor
 import ProtectedAuth from "./protectedRoute/ProtectedAuth";
 import ProtectedCheckout from "./protectedRoute/ProtectedCheckout";
 import ProtectedComponant from "./protectedRoute/ProtectedComponant";
+import Exclusive from "./Componenets/exclusive/Exclusive";
+import Offres from "./Componenets/offres/Offres";
 function App() {
   const router = createBrowserRouter([
     {
@@ -103,6 +105,8 @@ function App() {
           ),
         },
         { path: "products", element: <Products /> },
+        { path: "offres", element: <Offres /> },
+        { path: "exclusive", element: <Exclusive /> },
         { path: "bestesller", element: <Bestseller /> },
         { path: "details/:id", element: <Dettails /> },
         { path: "imagecards", element: <ImageCards /> },
