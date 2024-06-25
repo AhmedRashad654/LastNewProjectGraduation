@@ -48,17 +48,42 @@
 
 .bestSellingProductsContainer {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  gap: 10px;
   margin: 10px;
   padding: 20px;
 }
 
 .bestSellingProductsContainer h3 {
   margin: 0;
+  font-size: 27px;
 }
 
 .bestSellingProductsContainer .btn {
   margin-left: auto;
+}
+
+.bg{
+  background-color: rgb(249, 244, 244);
+  border: 2px solid rgb(254, 198, 198);
+  border-radius: 30px;
+  padding: 20px;
+  padding-top: 50px;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.new{
+  position: absolute;
+  top: 0;
+  right: 0px;
+  background-color: rgb(247, 75, 75);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 0 10px 0px 10px;
+  font-weight: bold;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
  

@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import "./products.css";
-
 import { Button } from "react-bootstrap";
 import { request } from "../../axios/axios";
 import ProductItem from "../ProductItem/ProductItem";
 import { useQuery } from "react-query";
+
 function Products() {
   const [hoverProduct, setHoverProduct] = useState(null);
+
   const [currentPage, setCurrentPage] = useState(1);
+
   function getProductPagination() {
     return request.get(`/products/pagination/${currentPage}/8`);
   }
@@ -36,7 +38,7 @@ function Products() {
 
   return (
     <div>
-      <div className="row row-cols-1 row-cols-md-4 g-4">
+      <div className="row">
         {data &&
           data?.data?.data?.map((product) => (
             <ProductItem

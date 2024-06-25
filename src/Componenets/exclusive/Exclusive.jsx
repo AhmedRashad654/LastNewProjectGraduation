@@ -27,31 +27,28 @@ function Exclusive() {
     data?.data?.data?.filter((product) => product.isExclusive) || [];
 
   return (
-    <div>
+   
        
-       <div className="container mx-auto mt-3">
-      <div className="flex flex-wrap -mx-3">
+       <div className="row">
         {exclusiveProducts.length > 0 ? (
           exclusiveProducts.map((product) => (
-            <div
-              key={product._id}
-              className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-3 mb-6"
-            >
+          
               <ProductItem
+              key={product._id} 
                 product={product}
                 hoverProduct={hoverProduct}
                 handleMouseOver={handleMouseOver}
                 handleMouseOut={handleMouseOut}
                 isExclusive={true}
               />
-            </div>
+       
           ))
         ) : (
           <h1 className="text-center w-full">No exclusive products here</h1>
         )}
-      </div>
+      
     </div>
-    </div>
+   
   );
 }
 

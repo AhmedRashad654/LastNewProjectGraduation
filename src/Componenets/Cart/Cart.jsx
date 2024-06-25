@@ -5,6 +5,8 @@ import empty from "../../Assets/emptyCart.png";
 import { url } from "../../axios/axios";
 import formatCurrency from "../formatcurrency";
 import { useNavigate } from "react-router-dom";
+import style from "../Home/Home.module.css";
+
 const Cart = () => {
   const {
     cartItems,
@@ -23,7 +25,11 @@ const Cart = () => {
   return (
     <div className="containe">
       <>
-        <h2 className="my-4">Your Shopping Cart</h2>
+      <div className={`${style.bestSellingProductsContainer} `}>
+      <i class="fa-solid fa-cart-arrow-down text-red-600 fa-2x"></i>
+        <h3 className="fw-bold">Your Shopping Cart</h3>
+      </div>
+
         <div className="grid grid-cols-[repeat(auto-fit,_minmax(0,_250px))]  gap-4">
           { cartItems.map( ( item ) => (
             <div key={ item._id } className="card">
@@ -33,21 +39,21 @@ const Cart = () => {
                 alt={ item.name }
               />
               <div className="card-body">
-                <h5 className="card-title">{ item.name }</h5>
+                <h5 className="card-title">{ item.name.split(" ").slice(0, 3).join(" ") }</h5>
                 <p>{ formatCurrency( item.price ) }</p>
                 <div className="d-flex align-items-center justify-content-between">
-                  <Button onClick={ () => decreaseQuantity( item ) } size="sm">
+                  <Button onClick={ () => decreaseQuantity( item ) } size="sm" variant="secondary" className="me-3 w-75">
                     -
                   </Button>
-                  <span>{ item.quantity } in cart</span>
-                  <Button onClick={ () => increaseQuantity( item ) } size="sm">
+                  <span className="fs-6 fw-bold">{ item.quantity } </span>
+                  <Button onClick={ () => increaseQuantity( item ) } size="sm" variant="secondary" className="ms-3 w-75">
                     +
                   </Button>
                 </div>
                 <Button
                   onClick={ () => removeItem( item ) }
                   variant="danger"
-                  className="mt-2"
+                  className="mt-2 w-100"
                 >
                   Remove
                 </Button>

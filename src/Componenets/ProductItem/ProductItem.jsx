@@ -6,19 +6,19 @@ import formatCurrency from "../formatcurrency";
 import { handleAddWishLish, removeFromWishList } from "../../api/api";
 import { useDispatch, useSelector } from "react-redux";
 import { setWishList } from "../../slice/slice";
+import { toast } from 'react-toastify';
 
-export default function ProductItem({
-  product,
-  hoverProduct,
-  handleMouseOver,
-  handleMouseOut,
-}) {
-  const { getItemsQuantity, increaseQuantity, decreaseQuantity, removeItem } =
-    useShoppingCart();
+export default function ProductItem({product, hoverProduct,handleMouseOver,handleMouseOut,}) {
+  
+  const { getItemsQuantity, increaseQuantity, decreaseQuantity, removeItem } =useShoppingCart(); 
+
   const quantity = getItemsQuantity(product._id);
+
   const navigate = useNavigate();
+
   ////////////function handle Add WishList/////////////
   const dispatch = useDispatch();
+
   async function addWishLish(id) {
     const result = await handleAddWishLish(id);
     dispatch(setWishList(result?.data?.data?.products));
@@ -35,113 +35,133 @@ export default function ProductItem({
   const favorite = useSelector((state) => state?.favoriteproducts?.products);
 
   return (
-    <div
-      onMouseOver={() => handleMouseOver(product._id)}
-      onMouseOut={handleMouseOut}
-      className="col"
-    >
-      <div className="card no-border">
-        <div className="position-relative">
-          <img
-            src={`${url}/img/${product.image}`}
-            className="card-img-top"
-            alt={product.name}
-          />
-          {quantity === 0 ? (
-            <Button
-              onClick={() => {
-                if (localStorage.getItem("token")) {
-                  increaseQuantity(product);
-                } else {
-                  navigate("/login");
-                }
-              }}
-              className={`btn btn-dark w-100 showbutton ${
-                hoverProduct === product._id ? "d-block" : "d-none"
-              }`}
-            >
-              Add to Cart
-            </Button>
-          ) : (
-            <div
-              className={`w-100 ${
-                hoverProduct === product._id ? "d-block" : "d-none"
-              }`}
-            >
+     <div className="col-md-3" onMouseOver={() => handleMouseOver(product._id)} onMouseOut={handleMouseOut}>
+
+         <div className="product overflow-hidden px-2 py-3 cursor-pointer position-relative">
+       
+                <img className='w-100' src={`${url}/img/${product.image}`} alt="" />
+                <h5 className=' text-main'>{product.name.split(" ").slice(0, 3).join(" ")}</h5>
+                <div className="d-flex justify-content-between mb-5">
+                <p>{product.price}$</p>
+                <p className="text-gray-800 text-decoration-line-through">{product.priceAfterOffer}$</p>
+                </div>
+            
+           {quantity == 0 ? (
+            <button onClick={() => {
+              if (localStorage.getItem("token")) {
+                increaseQuantity(product);
+                toast('Product Added Successfully to your Card!', {
+                  position: "top-right",
+                  autoClose: 2000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "light",
+                });
+              } else {
+                navigate("/login");
+              }
+            }} className={`${hoverProduct === product._id ? "d-block" : "d-none"} btn bg-main text-white showbutton mb-4`}>+Add To Cart</button>
+           ): (
+            <div className={`w-100 ${hoverProduct === product._id ? "d-block" : "d-none"}`}>
               <div className="d-flex align-items-center justify-content-center">
-                <Button
-                  onClick={() => {
+                <Button onClick={() => {
                     if (localStorage.getItem("token")) {
                       increaseQuantity(product);
+                      toast.success('Product Increased Quantity Successfully to your Card!', {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        draggable: true,
+                        progress: undefined,
+                       theme: 'light'
+                      });
                     } else {
                       navigate("/login");
                     }
                   }}
                   size="sm"
+                  variant="secondary"
+                  className="me-3 w-75"
                 >
                   +
                 </Button>
-                <span>{quantity} in cart</span>
-                <Button
-                  onClick={() => {
+                <span  className="fs-6 fw-bold">{quantity}</span>
+                <Button onClick={() => {
                     if (localStorage.getItem("token")) {
                       decreaseQuantity(product);
+                      toast.info('Product Decreased Quantity!', {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                      });
                     } else {
                       navigate("/login");
                     }
                   }}
-                  size="sm"
+                  size="sm" 
+                  variant="secondary"
+                  className="ms-3 w-75"
                 >
                   -
                 </Button>
               </div>
-              <Button
-                onClick={() => {
+              <Button onClick={() => {
                   if (localStorage.getItem("token")) {
                     removeItem(product);
+                      toast.warn('Product Already Removed fronm your Cart!', {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        draggable: true,
+                        progress: undefined,
+                       theme: 'dark'
+                      });
                   } else {
                     navigate("/login");
                   }
                 }}
                 variant="danger"
-                className="mt-2"
+                className="mt-2 w-100"
               >
                 Remove
               </Button>
             </div>
-          )}
-          <div className="icons">
+           )}
+             
+
+
+            <div className="icons">
             <button className="btn-icon favourit">
               {favorite?.length > 0 &&
               favorite.find((e) => e._id === product?._id) ? (
-                <i
-                  className="fa-solid fa-heart iconwishfavourit"
-                  onClick={() => handleRemove(product?._id)}
-                ></i>
+                <i className="fa-solid fa-heart iconwishfavourit" onClick={() => handleRemove(product?._id)}></i>
               ) : (
-                <i
-                  className="fa-regular fa-heart iconwish"
-                  onClick={() => {
+                <i className="fa-regular fa-heart iconwish" onClick={() => {
                     if (localStorage.getItem("token")) {
                       addWishLish(product?._id);
                     } else {
                       navigate("/login");
                     }
-                  }}
-                ></i>
+                  }}></i>
               )}
             </button>
             <Link to={`/details/${product._id}`}>
               <i className="fa-regular fa-eye icondetails"></i>
             </Link>
           </div>
+
         </div>
-        <div className="card-body">
-          <h5 className="card-title">{product?.name}</h5>
-          <p>{formatCurrency(product?.price)}</p>
-        </div>
-      </div>
-    </div>
+
+     </div>
+    
   );
 }
 

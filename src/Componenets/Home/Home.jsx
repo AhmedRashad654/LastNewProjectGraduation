@@ -33,55 +33,48 @@ export default function Home() {
         <h6 className={style.title}>This Month</h6>
       </div>
 
-      <div className={`${style.shapeContainer}`}>
-      <div className={style.Rectangle}></div>
-      <div className={`${style.bestSellingProductsContainer} w-full mb-8`}>
-        <h3>Best Selling Products</h3>
-      </div>
-      </div>
+     
 
+      <div className={`${style.bestSellingProductsContainer} `}>
+      <i class="fa-brands fa-think-peaks text-red-600 fa-2x"></i>
+        <h3 className="fw-bold">Best Selling Products</h3>
+      </div>
+     
+      <div className={style.bg}>
       <Bestseller />
+      </div>
       <HomeSlider />
 
-      <div className={`${style.shapeContainer}`}>
-        <div className={style.Rectangle}></div>
-        <h6 className={style.title}>This Month</h6>
+     
+      <div className={`${style.bestSellingProductsContainer} `}>
+      <i class="fa-solid fa-cart-arrow-down text-red-600 fa-2x"></i>
+        <h3 className="fw-bold"> Products</h3>
       </div>
 
-      <div className={`${style.bestSellingProductsContainer} w-full mb-8`}>
-        <h3> Products</h3>
-      </div>
-
-      <div>
+      <div className={style.bg}>
         <Products />
       </div>
 
-      <div className={`${style.shapeContainer} mt-16`}>
-        <div className={style.Rectangle}></div>
-        <h6 className={style.title}>This week</h6>
+      
+
+      <div className={`${style.bestSellingProductsContainer} `}>
+      <i class="fa-brands fa-squarespace text-red-600 fa-2x"></i>
+        <h3 className="fw-bold"> Our Exclusive Products </h3>
       </div>
 
-      <div className={`${style.bestSellingProductsContainer} w-full mb-8`}>
-        <h3> Our Exclusive Products </h3>
-      </div>
-
-      <div>
+      <div className={style.bg}>
         <Exclusive/>
       </div>
 
 
 
-
-      <div className={`${style.shapeContainer} mt-16`}>
-        <div className={style.Rectangle}></div>
-        <h6 className={style.title}>This week</h6>
+      <div className={`${style.bestSellingProductsContainer}`}>
+      <i class="fa-solid fa-square-caret-right text-red-600 fa-2x"></i>
+        <h3 className="fw-bold"> Our Offres Products </h3>
       </div>
 
-      <div className={`${style.bestSellingProductsContainer} w-full mb-8`}>
-        <h3> Our Offres Products </h3>
-      </div>
-
-      <div>
+      <div className={style.bg}>
+        <h1 className={style.new}>New</h1>
         <Offres/>
       </div>
 

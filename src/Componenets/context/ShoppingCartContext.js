@@ -3,17 +3,22 @@ import { createContext, useContext, useEffect, useState } from "react";
 const ShoppingCartContext = createContext({});
 
 const ShoppingCartProvider = ({ children }) => {
+
   const [cartItems, setCartItems] = useState([]);
+
   useEffect(() => {
     if (localStorage.getItem("cart")) {
       setCartItems(JSON.parse(localStorage.getItem("cart")));
     }
   }, []);
+
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
+
   const getItemsQuantity = (id) => {
     return cartItems.find((item) => item._id === id)?.quantity || 0;
+    
   };
 
   const increaseQuantity = (product) => {
@@ -39,6 +44,8 @@ const ShoppingCartProvider = ({ children }) => {
       }
     });
   };
+
+
   const decreaseQuantity = (product) => {
     setCartItems((currItems) => {
       const updatedItems = currItems
@@ -52,25 +59,31 @@ const ShoppingCartProvider = ({ children }) => {
     });
   };
 
+
   const removeItem = (product) => {
     setCartItems((currItems) =>
       currItems.filter((item) => item._id !== product._id)
     );
   };
 
+
   const getTotalQuantity = () => {
     return cartItems.reduce((total, item) => total + item.quantity, 0);
   };
+
   const getTotalPrice = () => {
     return cartItems.reduce(
       (total, item) => total + item.price * item.quantity,
       0
     );
   };
+
   const removeAllCart = () => {
     setCartItems([]);
   };
+
   const [checkLogin, setCheckLogin] = useState(false);
+
   return (
     <ShoppingCartContext.Provider
       value={{
