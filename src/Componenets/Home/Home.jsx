@@ -10,6 +10,9 @@ import Products from "../products/products";
 import HeaderCategory from "../HeaderCategory/HeaderCategory";
 import Exclusive from "../exclusive/Exclusive";
 import Offres from "../offres/Offres";
+import Services from "../services/Services";
+import Counter from "../counter/Counter";
+import Brands from "../brands/Brands"
 
 export default function Home() {
   // const [products, setProducts] = useState([]);
@@ -23,6 +26,7 @@ export default function Home() {
 
   return (
     <div>
+      <HomeSlider />
       <HeaderCategory/>
        {/*<div className={`${style.cover}`}>
         <img src={image} alt="Cover" />
@@ -43,29 +47,8 @@ export default function Home() {
       <div className={style.bg}>
       <Bestseller />
       </div>
-      <HomeSlider />
-
-     
-      <div className={`${style.bestSellingProductsContainer} `}>
-      <i class="fa-solid fa-cart-arrow-down text-red-600 fa-2x"></i>
-        <h3 className="fw-bold"> Products</h3>
-      </div>
-
-      <div className={style.bg}>
-        <Products />
-      </div>
-
       
-
-      <div className={`${style.bestSellingProductsContainer} `}>
-      <i class="fa-brands fa-squarespace text-red-600 fa-2x"></i>
-        <h3 className="fw-bold"> Our Exclusive Products </h3>
-      </div>
-
-      <div className={style.bg}>
-        <Exclusive/>
-      </div>
-
+      <Brands></Brands>
 
 
       <div className={`${style.bestSellingProductsContainer}`}>
@@ -78,6 +61,37 @@ export default function Home() {
         <Offres/>
       </div>
 
+      <div>
+        <Counter></Counter>
+      </div>
+     
+      <div className={`${style.bestSellingProductsContainer} `}>
+      <i class="fa-solid fa-cart-arrow-down text-red-600 fa-2x"></i>
+        <h3 className="fw-bold"> Products</h3>
+      </div>
+
+
+
+      <div className={style.bg}>
+        <Products />
+      </div>
+
+      <Services></Services>
+
+      <div className={`${style.bestSellingProductsContainer} `}>
+      <i class="fa-brands fa-squarespace text-red-600 fa-2x"></i>
+        <h3 className="fw-bold"> Our Exclusive Products </h3>
+      </div>
+
+      <div className={style.bg}>
+        <Exclusive/>
+      </div>
+
+
+
+    
+
+     
 
     </div>
   );

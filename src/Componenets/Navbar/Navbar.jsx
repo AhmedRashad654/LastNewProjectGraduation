@@ -1,4 +1,3 @@
-// src/components/Navbar/Navbar.js
 import React, { useEffect } from "react";
 import "./Navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,23 +20,24 @@ export default function Navbar() {
     useSearch();
   const totalQuantity = getTotalQuantity();
   const navigate = useNavigate();
+
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
   };
+
   useEffect(() => {
     if (searchQuery) {
       navigate("/filters");
     }
   }, [navigate, searchQuery]);
-  //////////////////
+
   function handleLogout() {
     localStorage.clear();
-     navigate("/");
+    navigate("/");
     window.location.reload();
-    setIsLoggedOut( true );
-   
+    setIsLoggedOut(true);
   }
-  //////////////
+
   useEffect(() => {
     if (isLoggedOut) {
       setIsLoggedOut(false);
@@ -45,7 +45,7 @@ export default function Navbar() {
   }, [isLoggedOut, setIsLoggedOut]);
 
   return (
-    <nav className="navbar">
+    <nav className="navbar p-3" >
       <div
         className="navbar-logo ms-5 cursor-pointer"
         onClick={() => navigate("/")}
@@ -55,16 +55,15 @@ export default function Navbar() {
         </h1>
       </div>
       <div className="navbar-search">
-        <input
+        <input 
           type="text"
-          placeholder="What are you looking for?"
+          placeholder ="What are you looking for?"
           onChange={handleSearch}
         />
       </div>
       <div className="navbar-icons me-5">
         {localStorage.getItem("token") && (
           <Link className="navbar-icon user" to={"/orders"}>
-            {" "}
             <FaFirstOrder />
           </Link>
         )}
@@ -102,7 +101,6 @@ export default function Navbar() {
         )}
         {localStorage.getItem("token") && (
           <button className="navbar-icon user" onClick={handleLogout}>
-            {" "}
             <FiLogOut />
           </button>
         )}

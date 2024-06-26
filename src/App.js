@@ -45,6 +45,9 @@ import ProtectedCheckout from "./protectedRoute/ProtectedCheckout";
 import ProtectedComponant from "./protectedRoute/ProtectedComponant";
 import Exclusive from "./Componenets/exclusive/Exclusive";
 import Offres from "./Componenets/offres/Offres";
+import Services from "./Componenets/services/Services";
+import Counter from "./Componenets/counter/Counter";
+import Brands from "./Componenets/brands/Brands";
 function App() {
   const router = createBrowserRouter([
     {
@@ -105,7 +108,10 @@ function App() {
           ),
         },
         { path: "products", element: <Products /> },
+        { path: "services", element: <Services /> },
+        { path: "counter", element: <Counter /> },
         { path: "offres", element: <Offres /> },
+        { path: "brands", element: <Brands /> },
         { path: "exclusive", element: <Exclusive /> },
         { path: "bestesller", element: <Bestseller /> },
         { path: "details/:id", element: <Dettails /> },

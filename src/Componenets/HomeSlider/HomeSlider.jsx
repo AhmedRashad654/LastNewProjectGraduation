@@ -1,10 +1,8 @@
 import React from 'react';
 import Slider from 'react-slick';
-import slide1 from '../../Assets/wat.jpg';
-import slide2 from '../../Assets/j.jpg';
-import slide3 from '../../Assets/ADV.jpg';
-import c1 from '../../Assets/MAC.jpg';
-import c2 from '../../Assets/bag.jpg';
+import banner from '../../Assets/banner-image.png';
+import single from '../../Assets/single-image1.png';
+import { useNavigate } from 'react-router-dom';
 
 export default function HomeSlider() {
   const settings = {
@@ -14,26 +12,60 @@ export default function HomeSlider() {
     slidesToShow: 1,
     slidesToScroll: 1
   };
+  const navigate = useNavigate();
+
+  const handleShopProductClick = () => {
+    navigate('/products'); // Adjust the path as necessary to match your route for the Products component
+  };
 
   return (
-    <div className='row'>
-      <div className='col-md-8 p-10'>
-        <Slider {...settings}>
-          <div>
-            <img src={slide1} className='w-100' height={1000} alt="Slide 1" />
+    <div className="w-full bg-[#D7DDDF]">
+      <Slider {...settings}>
+        <div className="h-screen flex items-center justify-center">
+          <div className="flex flex-col md:flex-row items-center justify-center w-full text-center">
+            <div className="md:w-1/2 p-4">
+              <div className="banner-content">
+                <h1 className="text-4xl md:text-6xl font-bold text-dark uppercase pb-5">
+                  Your Products Are Great.
+                </h1>
+                <button
+                  onClick={handleShopProductClick}
+                  className="btn btn-large btn-dark text-uppercase btn-rounded-none"
+                >
+                  Shop Product
+                </button>
+              </div>
+            </div>
+            <div className="md:w-1/2 p-4">
+              <div className="image-holder">
+                <img src={banner} className="w-full h-full object-cover" alt="banner" />
+              </div>
+            </div>
           </div>
-          <div>
-            <img src={slide2} className='w-100' height={1000} alt="Slide 2" />
+        </div>
+        <div className="h-screen flex items-center justify-center">
+          <div className="flex flex-col md:flex-row items-center justify-center w-full text-center">
+            <div className="md:w-1/2 p-4">
+              <div className="banner-content">
+                <h1 className="text-4xl md:text-6xl font-bold text-dark uppercase pb-5">
+                  Your Products Are Great.
+                </h1>
+                <button
+                  onClick={handleShopProductClick}
+                  className="btn btn-large btn-dark text-uppercase btn-rounded-none"
+                >
+                  Shop Product
+                </button>
+              </div>
+            </div>
+            <div className="md:w-1/2 p-4">
+              <div className="image-holder">
+                <img src={single} className="w-full h-full object-cover" alt="banner" />
+              </div>
+            </div>
           </div>
-          <div>
-            <img src={slide3} className='w-100' height={1000} alt="Slide 3" />
-          </div>
-        </Slider>
-      </div>
-      <div className='col-md-4'>
-        <img src={c1} className='w-100' height={250} alt="Category 1" />
-        <img src={c2} className='w-100' height={250} alt="Category 2" />
-      </div>
+        </div>
+      </Slider>
     </div>
   );
 }

@@ -1,0 +1,14 @@
+@keyframes slide-in {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  .icon-box img {
+    animation: slide-in 10s linear infinite;
+    position: relative;
+  }
+  

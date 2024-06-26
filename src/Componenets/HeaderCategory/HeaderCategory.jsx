@@ -1,19 +1,18 @@
 import React from "react";
-import style from "../Home/Home.module.css";
 import { useQuery } from "react-query";
 import { getAllCategory } from "../../api/api";
 import { useNavigate } from "react-router-dom";
+import styles from './HeaderCategory.module.css'; // Updated CSS import
+
 export default function HeaderCategory() {
   const navigate = useNavigate();
   const { data } = useQuery("getAllCategory", getAllCategory);
 
   return (
-    <div
-      className={`${style.imageContainer} w-full flex justify-around items-center my-3`}
-    >
+    <div className={`${styles.imageContainer} flex justify-center items-center my-3`}>
       {data?.data?.data?.map((category) => (
         <div
-          className="flex flex-col  items-center cursor-pointer"
+          className={`${styles.category} cursor-pointer`}
           key={category?._id}
           onClick={() =>
             navigate(`/category/${category?._id}`, {
@@ -25,10 +24,10 @@ export default function HeaderCategory() {
         >
           <img
             src={category?.icon}
-            alt="Electronic Accessories category"
-            className={style["small-rounded-img"]}
+            alt={`${category?.name} category`}
+            className={styles.largeRoundedImg}
           />
-          <h6 className="">{category?.name}</h6>
+          <h6 className={styles.categoryName}>{category?.name}</h6>
         </div>
       ))}
     </div>

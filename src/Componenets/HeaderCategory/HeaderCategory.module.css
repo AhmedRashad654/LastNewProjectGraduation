@@ -1,0 +1,43 @@
+.imageContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+  }
+  
+  .category {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 240px; /* Adjust width as needed for larger size */
+  }
+  
+  .largeRoundedImg {
+    width: 180px; /* Increase size for larger images */
+    height: 180px; /* Maintain aspect ratio */
+    margin-bottom: 10px;
+    border-radius: 50%;
+    background-color: #d9d9d9b5;
+    padding: 10px;
+    transition: border-radius 0.5s ease-in-out, transform 0.3s ease-in-out;
+  }
+  
+  .largeRoundedImg:hover {
+    border-radius: 20%; /* Change border radius on hover */
+    transform: scale(1.1); /* Scale up on hover */
+  }
+  
+  .categoryName {
+    margin: 0;
+    font-size: 1.2rem; /* Adjust font size */
+  }
+  
+  /* Media Query for Small Screens */
+  @media (max-width: 768px) {
+    .category {
+      width: 100%; /* Full width on small screens */
+    }
+  }
+  
