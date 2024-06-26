@@ -35,8 +35,13 @@ export default function AddProduct() {
     formData.append("price", data?.price);
     formData.append("Quantity", data?.Quantity);
     formData.append("description", data?.description);
-    formData.append("offres", data?.offres);
-    formData.append("isExclusive", data?.isExclusive);
+
+    if (data?.isExclusive) {
+      formData.append("isExclusive", data?.isExclusive);
+    }
+    if (data?.offres) {
+      formData.append("offres", data?.offres);
+    }
     formData.append("priceAfterOffer", data?.priceAfterOffer);
 
     formData.append("image", image);

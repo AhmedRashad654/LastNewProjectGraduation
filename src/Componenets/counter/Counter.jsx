@@ -36,7 +36,7 @@ function Counter() {
               </ul>
               <h2 className="text-uppercase">hot deal this week</h2>
               <p>New Collection Up to 50% OFF</p>
-              <a className="btn btn-primary cta-btn" href="#">Shop now</a>
+              <button className="btn btn-primary cta-btn">Shop now</button>
             </div>
           </div>
         </div>

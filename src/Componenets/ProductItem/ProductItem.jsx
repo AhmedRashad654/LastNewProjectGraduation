@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setWishList } from "../../slice/slice";
 import { toast } from 'react-toastify';
 
-export default function ProductItem({product, hoverProduct,handleMouseOver,handleMouseOut,}) {
+export default function ProductItem({product, hoverProduct,handleMouseOver,handleMouseOut,offer}) {
   
   const { getItemsQuantity, increaseQuantity, decreaseQuantity, removeItem } =useShoppingCart(); 
 
@@ -39,14 +39,15 @@ export default function ProductItem({product, hoverProduct,handleMouseOver,handl
 
          <div className="product overflow-hidden px-2 py-3 cursor-pointer position-relative">
        
-                <img className='w-100' src={`${url}/img/${product.image}`} alt="" />
-                <h5 className=' text-main'>{product.name.split(" ").slice(0, 3).join(" ")}</h5>
+                <img className='w-100' src={`${url}/img/${product.image}`} alt="product" />
+                <h5 className=' text-main mt-3'>{product.name.split(" ").slice(0, 3).join(" ")}</h5>
                 <div className="d-flex justify-content-between mb-5">
-                <p>{product.price}$</p>
-                <p className="text-gray-800 text-decoration-line-through">{product.priceAfterOffer}$</p>
+                <p>{formatCurrency(product.price)}$</p>
+                {offer? <p className="text-gray-800 text-decoration-line-through">{product.priceAfterOffer}$</p>:""}
+               
                 </div>
             
-           {quantity == 0 ? (
+           {quantity === 0 ? (
             <button onClick={() => {
               if (localStorage.getItem("token")) {
                 increaseQuantity(product);

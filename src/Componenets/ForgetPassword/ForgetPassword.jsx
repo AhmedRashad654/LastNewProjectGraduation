@@ -4,11 +4,10 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import styles from './ForgetPassword.module.css';
 import { Spinner } from 'react-bootstrap';
-import {  useNavigate } from 'react-router-dom';
+
 
 export default function ForgetPassword() {
   const [isLoading, setIsLoading] = useState(false);
-  const navigate= useNavigate();
 
   const validationSchema = Yup.object({
     email: Yup.string().required("Email is required").matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, "Enter valid Email"),
@@ -23,7 +22,7 @@ export default function ForgetPassword() {
     onSubmit: async (values) => {
       setIsLoading(true);
       try {
-        const response = await axios.post('http://localhost:3000/users/forgetPasword', {
+         await axios.post('http://localhost:3000/users/forgetPasword', {
           email: values.email,
         });
     

@@ -9,7 +9,7 @@ function Offres() {
 
   // Function to fetch all products
   function getAllProducts() {
-    return request.get(`/products`);
+    return request.get(`/products/sales`);
   }
 
   const { data } = useQuery("getAllProducts", getAllProducts);
@@ -22,29 +22,24 @@ function Offres() {
     setHoverProduct(null);
   };
 
-  // Filter products to only include those with offres == true
-  const offresProducts =
-    data?.data?.data?.filter((product) => product.offres) || [];
 
   return (
     <div className="row">
-        {offresProducts.length > 0 ? (
-          offresProducts.map((product) => (
-           
-              <ProductItem
-                product={product}
-                key={product._id}
-                hoverProduct={hoverProduct}
-                handleMouseOver={handleMouseOver}
-                handleMouseOut={handleMouseOut}
-                isExclusive={true}
-              />
-            
-          ))
-        ) : (
-          <h1 className="text-center w-full">No offers products here</h1>
-        )}
-      
+      {data?.data?.data?.length > 0 ? (
+        data?.data?.data?.map((product) => (
+          <ProductItem
+            product={product}
+            key={product._id}
+            hoverProduct={hoverProduct}
+            handleMouseOver={handleMouseOver}
+            handleMouseOut={handleMouseOut}
+            isExclusive={true}
+            offer={true}
+          />
+        ))
+      ) : (
+        <h1 className="text-center w-full">No offers products here</h1>
+      )}
     </div>
   );
 }

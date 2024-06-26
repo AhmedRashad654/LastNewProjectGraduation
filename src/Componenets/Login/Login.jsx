@@ -39,7 +39,7 @@ export default function Login() {
           }
         }
       })
-      .catch((error) => {
+      .catch( ( error ) => {
         toast.error(error?.response?.data?.error)
       });
   }

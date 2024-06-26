@@ -9,7 +9,7 @@ function Exclusive() {
 
   // Function to fetch all products
   function getAllProducts() {
-    return request.get(`/products`);
+    return request.get(`/products/exclusive`);
   }
 
   const { data } = useQuery("getAllProducts", getAllProducts);
@@ -22,33 +22,25 @@ function Exclusive() {
     setHoverProduct(null);
   };
 
-  // Filter products to only include those with isExclusive == true
-  const exclusiveProducts =
-    data?.data?.data?.filter((product) => product.isExclusive) || [];
+
 
   return (
-   
-       
-       <div className="row">
-        {exclusiveProducts.length > 0 ? (
-          exclusiveProducts.map((product) => (
-          
-              <ProductItem
-              key={product._id} 
-                product={product}
-                hoverProduct={hoverProduct}
-                handleMouseOver={handleMouseOver}
-                handleMouseOut={handleMouseOut}
-                isExclusive={true}
-              />
-       
-          ))
-        ) : (
-          <h1 className="text-center w-full">No exclusive products here</h1>
-        )}
-      
+    <div className="row" >
+      {data?.data?.data?.length > 0 ? (
+        data?.data?.data?.map((product) => (
+          <ProductItem
+            key={product._id}
+            product={product}
+            hoverProduct={hoverProduct}
+            handleMouseOver={handleMouseOver}
+            handleMouseOut={handleMouseOut}
+            isExclusive={true}
+          />
+        ))
+      ) : (
+        <h1 className="text-center w-full">No exclusive products here</h1>
+      )}
     </div>
-   
   );
 }
 

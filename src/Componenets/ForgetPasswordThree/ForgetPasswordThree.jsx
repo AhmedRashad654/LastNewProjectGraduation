@@ -27,7 +27,7 @@ export default function ForgetPasswordThree() {
     onSubmit: async (values) => {
       setIsLoading(true);
       try {
-        const response = await axios.post(`http://localhost:3000/users/resetPasswrod/${token}`, {
+        await axios.post(`http://localhost:3000/users/resetPasswrod/${token}`, {
           password: values.password,
           PasswordConfirm: values.PasswordConfirm,
         });
@@ -47,37 +47,59 @@ export default function ForgetPasswordThree() {
         <h2 className={styles.forgetPasswordTitle}>Reset Your Password</h2>
 
         <form onSubmit={formik.handleSubmit}>
-        <div className={styles.inputWrapper}>
-          <label className={styles.emailLabel} htmlFor="password">
-            New Password
-          </label>
-          <label className={styles.emailLabel} htmlFor="password">
-            <input type="password" id="password" name="password" placeholder="*" className={styles.input} {...formik.getFieldProps('password')}/>
-            {formik.touched.password && formik.errors.password ? (
-              <div className={`alert alert-danger p-2 m-2 w-75 text-center ${styles.error}`}>{formik.errors.password}</div>
-            ) : null}
-          </label>
-        </div>
+          <div className={styles.inputWrapper}>
+            <label className={styles.emailLabel} htmlFor="password">
+              New Password
+            </label>
+            <label className={styles.emailLabel} htmlFor="password">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="*"
+                className={styles.input}
+                {...formik.getFieldProps("password")}
+              />
+              {formik.touched.password && formik.errors.password ? (
+                <div
+                  className={`alert alert-danger p-2 m-2 w-75 text-center ${styles.error}`}
+                >
+                  {formik.errors.password}
+                </div>
+              ) : null}
+            </label>
+          </div>
 
-
-        <div className={styles.inputWrapper}>
-          <label className={styles.emailLabel} htmlFor="PasswordConfirm">
-            Repeat New Password
-          </label>
-          <label className={styles.emailLabel} htmlFor="PasswordConfirm">
-            <input type="password" id="PasswordConfirm" name="PasswordConfirm" placeholder="*" className={styles.input} {...formik.getFieldProps('PasswordConfirm')}/>
-            {formik.touched.PasswordConfirm && formik.errors.PasswordConfirm ? (
-              <div className={`alert alert-danger p-2 m-2 w-75 text-center ${styles.error}`}>{formik.errors.PasswordConfirm}</div>
-            ) : null}
-          </label>
-        </div>
-        <div>
-          <button type="submit" className={styles.sendButton}>Save</button>
-        </div>
+          <div className={styles.inputWrapper}>
+            <label className={styles.emailLabel} htmlFor="PasswordConfirm">
+              Repeat New Password
+            </label>
+            <label className={styles.emailLabel} htmlFor="PasswordConfirm">
+              <input
+                type="password"
+                id="PasswordConfirm"
+                name="PasswordConfirm"
+                placeholder="*"
+                className={styles.input}
+                {...formik.getFieldProps("PasswordConfirm")}
+              />
+              {formik.touched.PasswordConfirm &&
+              formik.errors.PasswordConfirm ? (
+                <div
+                  className={`alert alert-danger p-2 m-2 w-75 text-center ${styles.error}`}
+                >
+                  {formik.errors.PasswordConfirm}
+                </div>
+              ) : null}
+            </label>
+          </div>
+          <div>
+            <button type="submit" className={styles.sendButton}>
+              {isLoading ? "Loading..." : "Save"}
+            </button>
+          </div>
         </form>
-
       </div>
-     
     </div>
   );
 }

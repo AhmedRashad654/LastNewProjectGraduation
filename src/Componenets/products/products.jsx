@@ -46,7 +46,8 @@ function Products() {
               product={product}
               hoverProduct={hoverProduct}
               handleMouseOver={handleMouseOver}
-              handleMouseOut={handleMouseOut}
+              handleMouseOut={ handleMouseOut }
+              offer={false}
             />
           ))}
       </div>
