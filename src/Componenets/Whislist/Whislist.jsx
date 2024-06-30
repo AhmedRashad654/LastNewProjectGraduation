@@ -5,6 +5,7 @@ import style from "./whislist.module.css";
 import {  url } from "../../axios/axios";
 import { removeFromWishList } from "../../api/api";
 import empty from '../../Assets/dribble_shot_62_4x.jpg'
+import whislist from '../../Assets/whislist.png'
 
 export default function Whislist() {
   const favoriteProducts = useSelector(
@@ -28,9 +29,9 @@ export default function Whislist() {
   ); 
   return (
     <div className="my-1">
-      <h4 className="my-3 font-bold">Your Wish List</h4>
+      <h4 className="my-3 font-bold">Your WishList</h4>
       <div className="grid grid-cols-[repeat(auto-fit,_minmax(0,_250px))]  gap-4">
-        {favoriteProducts && favoriteProducts?.length > 0 &&
+        {favoriteProducts && favoriteProducts?.length > 0 ? 
           favoriteProducts?.map((product) => (
             <div
               className={` mb-4 ${style.parent}`}
@@ -53,7 +54,7 @@ export default function Whislist() {
                 <i className="fa-regular fa-trash-can"></i>
               </button>
             </div>
-          ))}
+          )): <img src={whislist} className="w-100"/>}
       </div>
     </div>
   );

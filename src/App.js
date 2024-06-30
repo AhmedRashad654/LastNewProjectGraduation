@@ -49,6 +49,7 @@ import Services from "./Componenets/services/Services";
 import Counter from "./Componenets/counter/Counter";
 import Brands from "./Componenets/brands/Brands";
 import ReviewProductDashboard from "./Dashboard/ProductDashboard/ReviewProductDashboard";
+import AboutUs from "./Componenets/AboutUs/AboutUs";
 function App() {
   const router = createBrowserRouter([
     {
@@ -91,6 +92,7 @@ function App() {
           ),
         },
         { path: "payment", element: <Payment /> },
+        { path: "aboutus", element: <AboutUs /> },
         { path: "user", element: <User /> },
         {
           path: "whislist",

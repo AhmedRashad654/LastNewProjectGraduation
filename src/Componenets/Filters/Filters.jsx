@@ -59,11 +59,13 @@ const Filters = () => {
                       }
                     }}
                     size="sm"
+                variant="secondary"
+                className="me-3 w-75"
                   >
                     -
                   </Button>
 
-                  <span>{getItemsQuantity(item._id)} in cart</span>
+                  <span>{getItemsQuantity(item._id)} </span>
                   <Button
                     onClick={() => {
                       if (localStorage.getItem("token")) {
@@ -73,14 +75,17 @@ const Filters = () => {
                       }
                     }}
                     size="sm"
+                variant="secondary"
+                className="ms-3 w-75"
                   >
                     +
                   </Button>
                 </div>
                 <Button
                   onClick={() => removeItem(item)}
+                  
                   variant="danger"
-                  className="mt-2"
+              className="mt-2 w-100"
                 >
                   Remove
                 </Button>
