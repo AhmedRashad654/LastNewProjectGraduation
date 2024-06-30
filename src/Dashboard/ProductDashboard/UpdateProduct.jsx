@@ -33,13 +33,11 @@ export default function UpdateProduct() {
     if (state?.data) {
       setValue("name", state.data.name || "");
       setValue("price", state.data.price || "");
-      setValue( "Quantity", state.data.Quantity || "" );
-      setValue( "description", state.data.description || "" );
+      setValue("Quantity", state.data.Quantity || "");
+      setValue("description", state.data.description || "");
       setValue("priceAfterOffer", state.data.priceAfterOffer || "");
       setValue("offres", state.data.offres || "");
       setValue("isExclusive", state.data.isExclusive || "");
-      
-      
     }
   }, [state, setValue]);
   //////////////////////
@@ -48,11 +46,16 @@ export default function UpdateProduct() {
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("price", data.price);
-    formData.append( "Quantity", data.Quantity );
+    formData.append("Quantity", data.Quantity);
     formData.append("description", data.description);
     formData.append("priceAfterOffer", data.priceAfterOffer);
-    formData.append("offres", data.offres);
-    formData.append("isExclusive", data.isExclusive);
+    if (data.offres) {
+      formData.append("offres", data.offres);
+    }
+    if (data.isExclusive) {
+      formData.append("isExclusive", data.isExclusive);
+    }
+    
     formData.append("categoryId", state.data.categoryId._id);
     if (uplaodImageLocal) {
       formData.append("image", uplaodImageLocal);
@@ -100,6 +103,7 @@ export default function UpdateProduct() {
             <small className="text-red-400">{errors.name.message}</small>
           )}
         </div>
+
         <div className="flex flex-col gap-1 my-2">
           <label htmlFor="">price</label>
           <input

@@ -2,11 +2,17 @@ import React, { useEffect, useState } from "react";
 import { request } from "../../axios/axios";
 import LoadingButton from "../../ui/LoadingButton";
 import { loadStripe } from "@stripe/stripe-js";
+import { toast } from "react-toastify";
 const stripeKey = loadStripe(
   "pk_test_51PQzYsAeDMk9ovRarR1ATuRFcrMIWG5f8jBDmAcGN3XyTVhp3nMGJ6cLJgZcicokdrOrXqMv3z7NyhSxnhzmkEds00VPQ2KPTE"
 );
 export default function Checkout() {
-  const [informCheckout, setInformCheckout] = useState({});
+  const [informCheckout, setInformCheckout] = useState({
+    shippingAddress1: "",
+    phone: "",
+    city: "",
+    country: "",
+  });
   const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart")).map(
     (product) => ({
       product: product._id,
@@ -15,6 +21,13 @@ export default function Checkout() {
   );
   const [Loading, setLoading] = useState(false);
   async function handleCheckout() {
+    if (
+      informCheckout.shippingAddress1 === "" ||
+      informCheckout.phone === "" ||
+      informCheckout.city === "" ||
+      informCheckout.country === ""
+    )
+      return toast.warn("you Must Add All Inform");
     setLoading(true);
     const result = await request.post(
       "/orders/create-checkout-session",
@@ -106,10 +119,10 @@ export default function Checkout() {
             onChange={handleChange}
           />
         </div>
-        <button className="btn bg-main w-100 text-white mt-4">Pay Now</button>
+     
       </form>
       <button
-        className="w-full flex justify-center items-center font-semibold bg-gray-300 p-1 rounded-md hover:bg-gray-400 transition-all duration-150"
+        className="w-full flex justify-center items-center font-semibold bg-main  p-2 rounded-md mt-4 text-white"
         onClick={handleCheckout}
       >
         {Loading ? <LoadingButton /> : "checkout"}

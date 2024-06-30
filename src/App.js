@@ -48,6 +48,7 @@ import Offres from "./Componenets/offres/Offres";
 import Services from "./Componenets/services/Services";
 import Counter from "./Componenets/counter/Counter";
 import Brands from "./Componenets/brands/Brands";
+import ReviewProductDashboard from "./Dashboard/ProductDashboard/ReviewProductDashboard";
 function App() {
   const router = createBrowserRouter([
     {
@@ -163,6 +164,10 @@ function App() {
         {
           path: "productdashboard",
           element: <ProductDashboard />,
+        },
+        {
+          path: "productdashboardReview/:id",
+          element: <ReviewProductDashboard />,
         },
         {
           path: "addproductdashboard",

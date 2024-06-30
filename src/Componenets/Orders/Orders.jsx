@@ -32,17 +32,20 @@ export default function Orders() {
         </div>
       </div>
       {order &&
-        order.map((item) => (
-          <div className="row">
-            <div className="col-md-12 bg-light bg-opacity-25 shadow w-100 rounded-2 mt-3 mb-3">
-              <div className="order d-flex justify-content-around fw-bolder align-items-center">
-                <p className="">{item?.dateOrdered?.slice(0, 10)}</p>
-                <p className="">{item?.totalPrice}</p>
-                <p className="ml-5">{item?.status}</p>
+        order
+          .slice()
+          .reverse()
+          .map((item) => (
+            <div className="row">
+              <div className="col-md-12 bg-light bg-opacity-25 shadow w-100 rounded-2 mt-3 mb-3">
+                <div className="order d-flex justify-content-around fw-bolder align-items-center">
+                  <p className="">{item?.dateOrdered?.slice(0, 10)}</p>
+                  <p className="">{item?.totalPrice}</p>
+                  <p className="ml-5">{item?.status}</p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
 
       <Link to={"/"}>
         <button className=" btn  border-2 border-black m-3 text-black">

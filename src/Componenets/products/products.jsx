@@ -35,7 +35,6 @@ function Products() {
   const handlePreviousPage = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
   };
-
   return (
     <div>
       <div className="row">

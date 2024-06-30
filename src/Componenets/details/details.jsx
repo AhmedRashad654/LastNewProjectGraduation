@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
 import { useNavigate, useParams } from "react-router-dom";
 import style from "./details.module.css";
@@ -9,19 +9,27 @@ import { handleAddWishLish, removeFromWishList } from "../../api/api";
 import { setWishList } from "../../slice/slice";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { Button } from "react-bootstrap";
+import Rating from "../../ui/Rating";
+import AddReview from "./AddReview";
+import ReviewClients from "./ReviewClients";
+
+import { useQuery } from "react-query";
 function Details() {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const [detailsprd, setdetailprd] = useState(null);
+
   const navigate = useNavigate();
+
   const favoriteProducts = useSelector(
     (state) => state.favoriteproducts.products
   );
-  useEffect(() => {
-    request.get(`/products/single/${id}`).then((res) => {
-      setdetailprd(res?.data?.data[0]);
-    });
-  }, [id]);
+
+  function getSingleProducts(id) {
+    return request.get(`/products/single/${id}`);
+  }
+  const { data, refetch } = useQuery(["getSingleProductsUser", id], () =>
+    getSingleProducts(id)
+  );
   /////////////add wish list///////////
   async function addWishLish(id) {
     const result = await handleAddWishLish(id);
@@ -29,16 +37,15 @@ function Details() {
   }
   /////////////remove wish list////////
   async function handleRemove() {
-    const result = await removeFromWishList( detailsprd?._id );
-    if ( result ) {
-       dispatch(setWishList(result?.data?.data?.products));
+    const result = await removeFromWishList(data?.data?.data[0]?._id);
+    if (result) {
+      dispatch(setWishList(result?.data?.data?.products));
     }
-   
   }
   /////////slider///////
   const settings = {
     dots: false,
-    infinite: detailsprd?.images.length > 1 ? true : false,
+    infinite: data?.data?.data[0]?.images.length > 1 ? true : false,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
@@ -48,7 +55,7 @@ function Details() {
   ////////////////////////
   const { getItemsQuantity, increaseQuantity, decreaseQuantity, removeItem } =
     useShoppingCart();
-  const quantity = getItemsQuantity(detailsprd?._id);
+  const quantity = getItemsQuantity(data?.data?.data[0]?._id);
   //////fgg////////
   const [hoverProduct, setHoverProduct] = useState();
   const handleMouseOver = (productId) => {
@@ -60,32 +67,34 @@ function Details() {
   };
   return (
     <>
-      {detailsprd ? (
+      {data ? (
         <div
           className={style.parentdiv}
-          onMouseOver={() => handleMouseOver(detailsprd._id)}
+          onMouseOver={() => handleMouseOver(data?.data?.data[0]._id)}
           onMouseOut={handleMouseOut}
         >
-          <div className={style.childone}>
+          <div className={`${style.childone} mb-5`}>
             <Slider {...settings}>
-              {detailsprd?.images?.map((e, i) => (
+              {data?.data?.data[0]?.images?.map((e, i) => (
                 <div key={i}>
                   <img
                     src={`${url}/img/${e}`}
                     className="w-100"
-                    alt={detailsprd.name}
+                    alt={"detailsprd.name"}
                   />
                   {quantity === 0 ? (
                     <Button
                       onClick={() => {
                         if (localStorage.getItem("token")) {
-                          increaseQuantity(detailsprd);
+                          increaseQuantity(data?.data?.data[0]);
                         } else {
                           navigate("/login");
                         }
                       }}
                       className={`btn btn-dark w-100 showbutton ${
-                        hoverProduct === detailsprd._id ? "d-block" : "d-none"
+                        hoverProduct === data?.data?.data[0]._id
+                          ? "d-block"
+                          : "d-none"
                       }`}
                     >
                       Add to Cart
@@ -93,26 +102,28 @@ function Details() {
                   ) : (
                     <div
                       className={`w-100 ${
-                        hoverProduct === detailsprd._id ? "d-block" : "d-none"
+                        hoverProduct === data?.data?.data[0]._id
+                          ? "d-block"
+                          : "d-none"
                       }`}
                     >
                       <div className="d-flex align-items-center justify-content-center">
                         <Button
-                          onClick={() => increaseQuantity(detailsprd)}
+                          onClick={() => increaseQuantity(data?.data?.data[0])}
                           size="sm"
                         >
                           +
                         </Button>
                         <span>{quantity} in cart</span>
                         <Button
-                          onClick={() => decreaseQuantity(detailsprd)}
+                          onClick={() => decreaseQuantity(data?.data?.data[0])}
                           size="sm"
                         >
                           -
                         </Button>
                       </div>
                       <Button
-                        onClick={() => removeItem(detailsprd)}
+                        onClick={() => removeItem(data?.data?.data[0])}
                         variant="danger"
                         className="mt-2"
                       >
@@ -125,13 +136,29 @@ function Details() {
             </Slider>
           </div>
           <div className={style.childttwo}>
-            <h1>{detailsprd?.name}</h1>
-            <p>{detailsprd?.description}</p>
-            <p>${detailsprd?.price}</p>
+            <h1>{data?.data?.data[0]?.name}</h1>
+            <Rating rating={data?.data?.data[0]?.Rate} size={30} />
+            <p>{data?.data?.data[0]?.description}</p>
+            <div className="flex justify-between items-center">
+              <p>${data?.data?.data[0]?.price}</p>
+              {data?.data?.data[0].offres && (
+                <p className="text-gray-800 text-decoration-line-through">
+                  ${data?.data?.data[0]?.priceAfterOffer}
+                </p>
+              )}
+            </div>
             <hr></hr>
-            <div className="d-flex justify-content-center  ">
+            <div className="d-flex justify-content-center  gap-3">
+              <button
+                className="bg-gray-300 px-2 rounded-lg font-semibold text-sm"
+                onClick={() => navigate("/")}
+              >
+                Back To Home
+              </button>
               <button className={`btn-icon ${style.favProduct}`}>
-                {favoriteProducts.find((e) => e?._id === detailsprd?._id) ? (
+                {favoriteProducts&& favoriteProducts.find(
+                  (e) => e?._id === data?.data?.data[0]?._id
+                ) ? (
                   <i
                     className="fa-solid fa-heart iconwishfavourit  p-2"
                     onClick={handleRemove}
@@ -141,7 +168,7 @@ function Details() {
                     className="fa-regular fa-heart iconwish p-2"
                     onClick={() => {
                       if (localStorage.getItem("token")) {
-                        addWishLish(detailsprd?._id);
+                        addWishLish(data?.data?.data[0]?._id);
                       } else {
                         navigate("/login");
                       }
@@ -155,6 +182,15 @@ function Details() {
       ) : (
         <Loading />
       )}
+      <div className="flex justify-between pl-[40px] pr-[40px]smm:pr-[20px] smm:pl-[20px] smm:flex-col-reverse">
+        <div className="w-[45%] flex justify-start smm:w-[100%]">ahmed</div>
+        <div className="w-[45%] p-3 smm:w-[100%] rounded-lg flex flex-col gap-10">
+          <AddReview id={data?.data?.data[0]?._id} refetch={refetch} />
+          <div>
+            <ReviewClients detailsprd={data?.data?.data[0]} />
+          </div>
+        </div>
+      </div>
     </>
   );
 }

@@ -13,6 +13,7 @@ import Services from "../services/Services";
 import Counter from "../counter/Counter";
 import Brands from "../brands/Brands";
 
+
 export default function Home() {
   return (
     <div>
@@ -66,6 +67,7 @@ export default function Home() {
         <h1 className={style.new}>New</h1>
         <Exclusive />
       </div>
+    
     </div>
   );
 }
