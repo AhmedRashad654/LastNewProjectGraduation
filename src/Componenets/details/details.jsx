@@ -14,7 +14,7 @@ import AddReview from "./AddReview";
 import ReviewClients from "./ReviewClients";
 
 import { useQuery } from "react-query";
-import StaticSideDetails from "./StaticSideDetails";
+
 function Details() {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -183,9 +183,11 @@ function Details() {
       ) : (
         <Loading />
       )}
-      <div className="flex justify-between pl-[40px] pr-[40px]smm:pr-[20px] smm:pl-[20px] smm:flex-col-reverse">
-        <div className="w-[45%] flex justify-start smm:w-[100%]"><StaticSideDetails/></div>
-        <div className="w-[45%] p-3 smm:w-[100%] rounded-lg flex flex-col gap-10">
+      <div className="flex justify-center pl-[40px] pr-[40px]smm:pr-[20px] smm:pl-[20px] smm:flex-col-reverse mt-4 ">
+      
+        <div className="w-[80%] p-5 smm:w-[100%] rounded-lg flex flex-col gap-10   border-gray-500 border-solid border-4  "  >
+
+
           <AddReview id={data?.data?.data[0]?._id} refetch={refetch} />
           <div>
             <ReviewClients detailsprd={data?.data?.data[0]} />

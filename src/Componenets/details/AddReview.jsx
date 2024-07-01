@@ -55,7 +55,7 @@ export default function AddReview({ id, refetch }) {
           ></textarea>
         </div>
         <button
-          className="bg-gray-300 px-2 rounded-md py-1 font-medium text-sm hover:bg-gray-400 transition-all duration-150 mt-2"
+          className="bg-red-600 px-2 rounded-md py-1 font-medium text-md text-white hover:bg-gray-400 transition-all duration-150 mt-2"
           onClick={handleAddReview}
         >
           {loading ? <LoadingButton /> : "send your rate"}

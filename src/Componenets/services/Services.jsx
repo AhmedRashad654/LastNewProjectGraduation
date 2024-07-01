@@ -15,7 +15,7 @@ function Services() {
               </div>
               <div className="icon-box-content">
                 <h3 className="card-title text-uppercase text-dark">Quality guarantee</h3>
-                <p>Dolor sit amet lorem ipsum consectetur adipiscing elit.</p>
+               
               </div>
             </div>
           </div>
@@ -26,7 +26,7 @@ function Services() {
               </div>
               <div className="icon-box-content">
                 <h3 className="card-title text-uppercase text-dark">Daily offers</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
+               
               </div>
             </div>
           </div>
@@ -37,7 +37,7 @@ function Services() {
               </div>
               <div className="icon-box-content">
                 <h3 className="card-title text-uppercase text-dark">100% secure payment</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                
               </div>
             </div>
           </div>

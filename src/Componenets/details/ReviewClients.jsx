@@ -4,8 +4,8 @@ import Rating from '../../ui/Rating';
 export default function ReviewClients({ detailsprd }) {
     return (
       <>
-        <div className="w-fit">
-          <h6 className="font-bold">Reviews Clients</h6>
+        <div className="w-fit ">
+          <h6 className="font-bold  ">Reviews Clients</h6>
           <hr />
         </div>
         <div className="w-100% max-h-[500px] overflow-auto p-2 scrollbar">
@@ -25,7 +25,7 @@ export default function ReviewClients({ detailsprd }) {
                     </div>
                   </div>
                   <div>
-                    <p className="ml-3">{e?.description}</p>
+                    <p className="ml-3 ">{e?.description}</p>
                   </div>
                   <hr />
                 </div>
