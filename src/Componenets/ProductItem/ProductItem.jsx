@@ -43,7 +43,7 @@ export default function ProductItem({
 
   return (
     <div
-      className="col-md-3"
+      className=""
       onMouseOver={() => handleMouseOver(product._id)}
       onMouseOut={handleMouseOut}
     >

@@ -28,6 +28,10 @@ export default function Success() {
         city: informCheckout?.city,
         country: informCheckout?.country,
         user: user?._id,
+      }, {
+        headers: {
+          Authorization:localStorage.getItem('token')
+        }
       });
       if (result?.data?._id) {
         setSuccess(true);

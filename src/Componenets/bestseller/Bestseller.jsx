@@ -25,9 +25,8 @@ function Bestseller() {
  };
   return (
     <div>
-      <div className="row">
-        { products.map( ( product ) => (
-         
+      <div className="grid grid-cols-[repeat(auto-fit,_minmax(0,_250px))]">
+        {products.map((product) => (
           <ProductItem
             key={product._id}
             product={product}

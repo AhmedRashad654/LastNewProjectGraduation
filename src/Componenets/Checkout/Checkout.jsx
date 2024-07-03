@@ -31,7 +31,12 @@ export default function Checkout() {
     setLoading(true);
     const result = await request.post(
       "/orders/create-checkout-session",
-      cartFromLocalStorage
+      cartFromLocalStorage,
+      {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      }
     );
     const stripePromise = await stripeKey;
     const { error } = await stripePromise.redirectToCheckout({
@@ -119,7 +124,6 @@ export default function Checkout() {
             onChange={handleChange}
           />
         </div>
-     
       </form>
       <button
         className="w-full flex justify-center items-center font-semibold bg-main  p-2 rounded-md mt-4 text-white"

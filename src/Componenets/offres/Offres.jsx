@@ -24,7 +24,7 @@ function Offres() {
 
 
   return (
-    <div className="row">
+    <div className="grid grid-cols-[repeat(auto-fit,_minmax(0,_250px))]">
       {data?.data?.data?.length > 0 ? (
         data?.data?.data?.map((product) => (
           <ProductItem

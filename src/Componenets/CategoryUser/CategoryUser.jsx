@@ -12,7 +12,9 @@ export default function CategoryUser() {
   const { state } = useLocation();
   const [hoverProduct, setHoverProduct] = useState(null);
 
-  const favoriteProducts = useSelector((state) => state.favoriteproducts.products);
+  const favoriteProducts = useSelector(
+    (state) => state.favoriteproducts.products
+  );
 
   const isFavorite = (product) => {
     return favoriteProducts.some((favProduct) => favProduct.id === product.id);
@@ -40,8 +42,8 @@ export default function CategoryUser() {
         <div className="text-gray-500 my-3">
           Home / <span className="text-black">{state?.name}</span>
         </div>
-        <div className="d-flex justify-between flex-sm-column flex-md-column flex-xl-row">
-          <div className="d-flex justify-between" style={{ width: "50%" }}>
+        <div className="flex justify-between flex-wrap mt-5">
+          <div className="grid grid-cols-[repeat(auto-fit,_minmax(0,_250px))]  gap-4 w-[70%]">
             {data?.data?.map((product) => (
               <ProductItem
                 key={product._id}
@@ -59,5 +61,3 @@ export default function CategoryUser() {
     </div>
   );
 }
-
-

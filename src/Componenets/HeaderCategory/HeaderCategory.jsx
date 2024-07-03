@@ -9,7 +9,7 @@ export default function HeaderCategory() {
   const { data } = useQuery("getAllCategory", getAllCategory);
 
   return (
-    <div className={`${styles.imageContainer} flex justify-center items-center my-3`}>
+    <div className={`${styles.imageContainer} my-5`}>
       {data?.data?.data?.map((category) => (
         <div
           className={`${styles.category} cursor-pointer`}

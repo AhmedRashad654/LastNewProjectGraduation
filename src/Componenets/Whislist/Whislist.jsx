@@ -54,7 +54,7 @@ export default function Whislist() {
                 <i className="fa-regular fa-trash-can"></i>
               </button>
             </div>
-          )): <img src={whislist} className="w-100"/>}
+          )): <img src={whislist} className="w-100" alt="whislist"/>}
       </div>
     </div>
   );

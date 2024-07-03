@@ -37,7 +37,7 @@ function Products() {
   };
   return (
     <div>
-      <div className="row">
+      <div className="grid grid-cols-[repeat(auto-fit,_minmax(0,_250px))]">
         {data &&
           data?.data?.data?.map((product) => (
             <ProductItem
@@ -45,7 +45,7 @@ function Products() {
               product={product}
               hoverProduct={hoverProduct}
               handleMouseOver={handleMouseOver}
-              handleMouseOut={ handleMouseOut }
+              handleMouseOut={handleMouseOut}
               offer={false}
             />
           ))}

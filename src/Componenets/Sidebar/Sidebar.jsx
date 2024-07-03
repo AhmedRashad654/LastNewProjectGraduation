@@ -3,7 +3,7 @@ import Rate from './Rate';
 
 function Sidebar() {
   return (
-    <div  style={{width:"30%"}}>
+    <div  className='p-3'>
       <div >
         <h5 className='mt-10'>Price</h5>
         <div className="form-check p-1 mt-4">

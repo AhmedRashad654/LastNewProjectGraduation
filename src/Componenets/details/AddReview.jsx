@@ -23,6 +23,11 @@ export default function AddReview({ id, refetch }) {
         {
           rating: signRate,
           description: descriptionClient,
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
         }
       );
 
@@ -36,7 +41,7 @@ export default function AddReview({ id, refetch }) {
     } catch (error) {
       console.log(error);
       setLoading(false);
-      toast.error(error?.response?.data?.messgae);
+      toast.error(error?.response?.data?.message);
     }
   }
   return (

@@ -16,7 +16,11 @@ export default function Layout() {
   ////////////
   useEffect(() => {
     async function getAllWishList() {
-      const result = await request.get(`/wishList/${user?._id}`);
+      const result = await request.get( `/wishList/${user?._id}`, {
+        headers: {
+          Authorization:localStorage.getItem('token')
+        }
+      });
       dispatch(setWishList(result?.data?.data?.products));
     }
     if (localStorage.getItem("token")) {

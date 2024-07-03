@@ -5,8 +5,8 @@ import { faCertificate, faTags, faShieldAlt } from '@fortawesome/free-solid-svg-
 function Services() {
   return (
     <section id="company-services" className="py-9 bg-[#D7DDDF]">
-      <div className="container mx-auto">
-        <div className="flex flex-wrap -mx-5 justify-center pt-5">
+      <div className="pl-3">
+        <div className="flex flex-wrap -mx-5 justify-between pt-5">
          
           <div className="w-full md:w-1/2 lg:w-1/4 px-4 pb-3">
             <div className="icon-box flex mb-6 "> {/* Added mb-6 */}
