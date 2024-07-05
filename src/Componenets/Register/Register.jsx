@@ -19,15 +19,13 @@ export default function Register() {
       .post("/users", data)
       .then((result) => {
         console.log(result);
-        if (result?.data?.data?._id) {
+        if (result?.data?.message === "success") {
           navigate("/login");
           toast.success("Create Account successfuly");
         }
       })
       .catch((error) => {
-        toast.error(error?.response?.data?.error);
-        toast.error("😂😒 بس بنسبة كبيرة عمل الايميل Nodemailer مشكلة في ");
-        navigate("/login");
+       toast.error(error.response.data.message)
       });
   }
   return (

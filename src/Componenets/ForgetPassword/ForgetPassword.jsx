@@ -22,10 +22,10 @@ export default function ForgetPassword() {
     onSubmit: async (values) => {
       setIsLoading(true);
       try {
-         await axios.post('http://localhost:3000/users/forgetPasword', {
+         await axios.post('http://localhost:5000/users/forgetPasword', {
           email: values.email,
         });
-    
+        
       } catch (error) {
         console.error(error); 
       } finally {
@@ -38,6 +38,7 @@ export default function ForgetPassword() {
     <div className={styles.pageWrapper}>
       <div className={styles.card}>
         <h2 className={styles.forgetPasswordTitle}>Forget Password?</h2>
+        
         <form onSubmit={formik.handleSubmit}>
           <div className={styles.inputWrapper}>
             <label className={styles.emailLabel} htmlFor="email">Email</label>
@@ -52,6 +53,7 @@ export default function ForgetPassword() {
               <div className={`alert alert-danger p-2 m-2 w-75 text-center ${styles.error}`}>{formik.errors.email}</div>
             ) : null}
           </div>
+
           <div className={styles.buttonWrapper}>
             <button type="submit" className={styles.sendButton} disabled={isLoading} >
              

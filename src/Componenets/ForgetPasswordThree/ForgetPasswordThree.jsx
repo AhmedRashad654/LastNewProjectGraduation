@@ -27,7 +27,7 @@ export default function ForgetPasswordThree() {
     onSubmit: async (values) => {
       setIsLoading(true);
       try {
-        await axios.post(`http://localhost:3000/users/resetPasswrod/${token}`, {
+        await axios.post(`http://localhost:5000/users/resetPasswrod/${token}`, {
           password: values.password,
           PasswordConfirm: values.PasswordConfirm,
         });
