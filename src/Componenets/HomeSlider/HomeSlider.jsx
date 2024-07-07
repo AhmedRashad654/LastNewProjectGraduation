@@ -1,71 +1,60 @@
-import React from 'react';
-import Slider from 'react-slick';
-import banner from '../../Assets/banner-image.png';
-import single from '../../Assets/single-image1.png';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from "react";
+import ScrollReveal from "scrollreveal";
+import banner from "../../Assets/banner-image.png";
+import single from "../../Assets/single-image1.png";
+import Slider from "react-slick";
+import "./HomeSlider.css";
+import { useNavigate } from "react-router-dom";
+export default function Header() {
+  const navigate = useNavigate();
 
-export default function HomeSlider() {
+  useEffect(() => {
+    const scrollRevealOption = {
+      distance: "50px",
+      origin: "top",
+      duration: 1000,
+    };
+    ScrollReveal().reveal(".maintext h1", { ...scrollRevealOption });
+    ScrollReveal().reveal(".maintext h4", {
+      ...scrollRevealOption,
+      delay: 500,
+    });
+    ScrollReveal().reveal(".buy", {
+      ...scrollRevealOption,
+      delay: 1000,
+    });
+  }, []);
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 5000,
   };
-  const navigate = useNavigate();
-
-  const handleShopProductClick = () => {
-    navigate('/products'); // Adjust the path as necessary to match your route for the Products component
-  };
-
   return (
-    <div className="w-full bg-[#D7DDDF]">
-      <Slider {...settings}>
-        <div className="h-screen flex items-center justify-center">
-          <div className="flex flex-col md:flex-row items-center justify-center w-full text-center">
-            <div className="md:w-1/2 p-4">
-              <div className="banner-content">
-                <h1 className="text-4xl md:text-6xl font-bold text-dark uppercase pb-5">
-                  Your Products Are Great.
-                </h1>
-                <button
-                  onClick={handleShopProductClick}
-                  className="btn btn-large btn-dark text-uppercase btn-rounded-none"
-                >
-                  Shop Product
-                </button>
-              </div>
-            </div>
-            <div className="md:w-1/2 p-4">
-              <div className="image-holder">
-                <img src={banner} className="w-full h-full object-cover" alt="banner" />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="h-screen flex items-center justify-center">
-          <div className="flex flex-col md:flex-row items-center justify-center w-full text-center">
-            <div className="md:w-1/2 p-4">
-              <div className="banner-content">
-                <h1 className="text-4xl md:text-6xl font-bold text-dark uppercase pb-5">
-                  Your Products Are Great.
-                </h1>
-                <button
-                  onClick={handleShopProductClick}
-                  className="btn btn-large btn-dark text-uppercase btn-rounded-none"
-                >
-                  Shop Product
-                </button>
-              </div>
-            </div>
-            <div className="md:w-1/2 p-4">
-              <div className="image-holder">
-                <img src={single} className="w-full h-full object-cover" alt="banner" />
-              </div>
-            </div>
-          </div>
-        </div>
+    <div className="header">
+      <Slider {...settings} className="sitt">
+        <img src={banner} alt="oneheader" />
+        <img src={single} alt="twoheader" />
       </Slider>
+
+      <div className="maintext">
+        <h1 className="text-4xl md:text-6xl font-bold text-white  pb-2">
+          Techno<span className="text-danger">Core</span>
+        </h1>
+        <h4 className=" md:text-6xl font-bold text-dark  pb-3 pl-2 ">
+          {" "}
+          Your Products Are Great.
+        </h4>
+        <button
+          onClick={() => navigate("/products")}
+          className="btn btn-large btn-dark text-uppercase btn-rounded-none ml-4 buy"
+        >
+          Shop Product
+        </button>
+      </div>
     </div>
   );
 }

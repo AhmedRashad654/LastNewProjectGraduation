@@ -48,9 +48,9 @@ export default function Success() {
   if (success)
     return (
       <div className="w-full flex items-center flex-col gap-3">
-        <h1 className="mt-28">Thank You</h1>
+        <h1 className="mt-28 font-semibold text-red-500">Thank You</h1>
         <button
-          className="py-1 px-2 rounded-md bg-green-300 w-fit transition-all duration-150 hover:bg-green-400"
+          className="py-1 px-2 rounded-md bg-red-300  w-fit transition-all duration-150 hover:bg-red-400 text-white"
           onClick={() => navigate("/orders")}
         >
           See Your Order

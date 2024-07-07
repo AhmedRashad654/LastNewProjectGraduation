@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { useNavigate, useParams } from "react-router-dom";
 import style from "./details.module.css";
@@ -18,7 +18,9 @@ import { useQuery } from "react-query";
 function Details() {
   const { id } = useParams();
   const dispatch = useDispatch();
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const navigate = useNavigate();
 
   const favoriteProducts = useSelector(
@@ -67,7 +69,10 @@ function Details() {
     setHoverProduct(null);
   };
   return (
-    <>
+    <div className="mb-16">
+      <div className="w-full text-center mt-5 font-bold">
+        <h4 className="text-[35px]">Details Product</h4>
+      </div>
       {data ? (
         <div
           className={style.parentdiv}
@@ -157,7 +162,8 @@ function Details() {
                 Back To Home
               </button>
               <button className={`btn-icon ${style.favProduct}`}>
-                {favoriteProducts&& favoriteProducts.find(
+                {favoriteProducts &&
+                favoriteProducts.find(
                   (e) => e?._id === data?.data?.data[0]?._id
                 ) ? (
                   <i
@@ -184,17 +190,14 @@ function Details() {
         <Loading />
       )}
       <div className="flex justify-center pl-[40px] pr-[40px]smm:pr-[20px] smm:pl-[20px] smm:flex-col-reverse mt-4 ">
-      
-        <div className="w-[80%] p-5 smm:w-[100%] rounded-lg flex flex-col gap-10   border-gray-500 border-solid border-4  "  >
-
-
+        <div className="w-[80%] p-5 smm:w-[100%] rounded-lg flex flex-col gap-10   border-gray-500 border-solid border-4  ">
           <AddReview id={data?.data?.data[0]?._id} refetch={refetch} />
           <div>
             <ReviewClients detailsprd={data?.data?.data[0]} />
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

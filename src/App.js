@@ -51,6 +51,9 @@ import Brands from "./Componenets/brands/Brands";
 import ReviewProductDashboard from "./Dashboard/ProductDashboard/ReviewProductDashboard";
 import AboutUs from "./Componenets/AboutUs/AboutUs";
 import Sidebar from "./Componenets/Sidebar/Sidebar";
+import DetailsOrders from "./Dashboard/OrdersDashboard/DetailsOrders";
+import DetailsOrderUser from "./Componenets/Orders/DetailsOrderUser";
+
 function App() {
   const router = createBrowserRouter([
     {
@@ -125,6 +128,7 @@ function App() {
         { path: "success", element: <Success /> },
         { path: "forgetpassword", element: <ForgetPassword /> },
         { path: "resetPassword/:token", element: <ForgetPasswordThree /> },
+        { path: "/order/:id", element: <DetailsOrderUser /> },
 
         { path: "*", element: <NotFound /> },
       ],
@@ -184,6 +188,10 @@ function App() {
         {
           path: "ordersdashboard",
           element: <OrdersDashboard />,
+        },
+        {
+          path: "ordersDetails/:id",
+          element: <DetailsOrders />,
         },
       ],
     },

@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { request } from "../../axios/axios";
-
+import notOrder from "../../Assets/no-order.jpg";
 export default function Orders() {
   const user = JSON.parse(localStorage.getItem("user"));
   const [order, setOrder] = useState([]);
+  const navigate = useNavigate();
   const getOrders = useCallback(async () => {
     await request.get(`/orders/user/${user._id}`).then((result) => {
       setOrder(result?.data?.data);
@@ -16,10 +17,14 @@ export default function Orders() {
     }
   }, [getOrders]);
   if (order && order?.length === 0) {
-    return <h1>No order Yet</h1>;
+    return (
+      <div className="absolute left-[50%] translate-x-[-50%] top-50 translate-y-[-50%] ">
+        <img src={notOrder} alt="noOrder" />
+      </div>
+    );
   }
   return (
-    <div>
+    <div className="w-[95%] mx-auto">
       <h2 className=" text-danger rounded-4 py-3 fw-bolder text-capitalize mb-4">
         my orders
       </h2>
@@ -27,13 +32,16 @@ export default function Orders() {
       <div className="orders bg-light bg-opacity-25 shadow w-100 p-2 rounded-2 mt-3 mb-3">
         <div className="d-flex justify-content-around fw-bolder align-items-center">
           <p>CreatedAt</p>
-          <p>totalPrice</p>
+          <p className="-ml-4">totalPrice</p>
+          <p>Details</p>
+
           <p>status</p>
         </div>
       </div>
       {order &&
         order
-          .slice()
+          ?.filter((e) => e?.totalPrice !== 0)
+          ?.slice()
           .reverse()
           .map((item) => (
             <div className="row">
@@ -41,7 +49,14 @@ export default function Orders() {
                 <div className="order d-flex justify-content-around fw-bolder align-items-center">
                   <p className="">{item?.dateOrdered?.slice(0, 10)}</p>
                   <p className="">{item?.totalPrice}</p>
-                  <p className="ml-5">{item?.status}</p>
+                  <p
+                    className="ml-8 cursor-pointer"
+                    onClick={() => navigate(`/order/${item?._id}`)}
+                  >
+                    Details
+                  </p>
+
+                  <p className="">{item?.status}</p>
                 </div>
               </div>
             </div>

@@ -1,20 +1,15 @@
-// src/components/Filters/Filters.js
 import React, { useEffect, useState } from "react";
-import { useShoppingCart } from "../context/ShoppingCartContext";
-import { Button } from "react-bootstrap";
-import NotFound from "../NotFound/NotFound";
-import { request, url } from "../../axios/axios";
+import { request } from "../../axios/axios";
 import Loading from "../../ui/Loading";
 import { useSearch } from "../context/SearchContext";
-import { useNavigate } from "react-router-dom";
-
+import ProductItem from "../ProductItem/ProductItem";
+import notSearch from "../../Assets/3bbf.jpg";
 const Filters = () => {
+  const [hoverProduct, setHoverProduct] = useState(null);
   const { searchQuery } = useSearch();
-  const [ products, setProducts ] = useState( [] );
-  const navigate = useNavigate();
+  const [products, setProducts] = useState([]);
+
   const [loading, setLoading] = useState(true);
-  const { increaseQuantity, decreaseQuantity, removeItem, getItemsQuantity } =
-    useShoppingCart();
 
   useEffect(() => {
     if (searchQuery) {
@@ -32,65 +27,35 @@ const Filters = () => {
     return <Loading />;
   }
 
+  const handleMouseOver = (productId) => {
+    setHoverProduct(productId);
+  };
+
+  const handleMouseOut = () => {
+    setHoverProduct(null);
+  };
   return (
-    <div className="containe">
-      <h3 className="my-3 font-bold">Filtered Products</h3>
+    <div className="containe m-12 mb-12">
+      <h3 className="my-3 font-bold mb-5 text-red-500">Filtered Products</h3>
       {products.length === 0 ? (
-        <NotFound />
+        <div className="h-[60vh]">
+          <img
+            src={notSearch}
+            alt="NotSearch"
+            className="absolute left-[50%] translate-x-[-50%] "
+          />
+        </div>
       ) : (
         <div className="grid grid-cols-[repeat(auto-fit,_minmax(0,_250px))]  gap-4">
-          {products.map((item) => (
-            <div key={item.id} className="card">
-              <img
-                src={`${url}/img/${item.image}`}
-                className="card-img-top object-cover h-48 w-full"
-                alt={item.name}
-              />
-              <div className="card-body">
-                <h5 className="card-title">{item.name}</h5>
-                <p>{item.price}</p>
-                <div className="d-flex align-items-center justify-content-between">
-                  <Button
-                    onClick={() => {
-                      if (localStorage.getItem("token")) {
-                        decreaseQuantity(item);
-                      } else {
-                        navigate("/login");
-                      }
-                    }}
-                    size="sm"
-                variant="secondary"
-                className="me-3 w-75"
-                  >
-                    -
-                  </Button>
-
-                  <span>{getItemsQuantity(item._id)} </span>
-                  <Button
-                    onClick={() => {
-                      if (localStorage.getItem("token")) {
-                        increaseQuantity(item);
-                      } else {
-                        navigate("/login");
-                      }
-                    }}
-                    size="sm"
-                variant="secondary"
-                className="ms-3 w-75"
-                  >
-                    +
-                  </Button>
-                </div>
-                <Button
-                  onClick={() => removeItem(item)}
-                  
-                  variant="danger"
-              className="mt-2 w-100"
-                >
-                  Remove
-                </Button>
-              </div>
-            </div>
+          {products.map((product) => (
+            <ProductItem
+              key={product._id}
+              product={product}
+              hoverProduct={hoverProduct}
+              handleMouseOver={handleMouseOver}
+              handleMouseOut={handleMouseOut}
+              offer={product?.offres === true ? true : false}
+            />
           ))}
         </div>
       )}

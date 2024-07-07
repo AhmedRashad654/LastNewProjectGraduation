@@ -17,8 +17,9 @@ export default function ProductDashboard() {
     "allProductDashboard",
     getAllProduct
   );
+
   /////////////end get All product///////////////
-  console.log(data);
+
   /////////start delete User////////////
   async function handleDelete(id) {
     swal({

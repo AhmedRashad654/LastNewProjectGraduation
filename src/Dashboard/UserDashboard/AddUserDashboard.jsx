@@ -16,13 +16,13 @@ export default function AddUserDashboard() {
     await request
       .post("/users", data)
       .then((result) => {
-        console.log(result);
         if (result?.data?.data?._id) {
           toast.success("user create successfuly");
         }
       })
-      .catch( ( error ) => toast.error( error?.response?.data?.error ) );
-       toast.error("😂😒 بس بنسبة كبيرة عمل الايميل Nodemailer مشكلة في ");
+      .catch((error) => toast.error(error?.response?.data?.error));
+    toast.error("😂😒 بس بنسبة كبيرة عمل الايميل Nodemailer مشكلة في ");
+  
   }
 
   return (

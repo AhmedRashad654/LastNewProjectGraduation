@@ -61,7 +61,7 @@ export default function Footer() {
 
       <div className="footer-bottom">
         {/* <hr /> */}
-        <p>© Copyright Rimel 2024. All rights reserved</p>
+        <p>© Copyright TechnoCore 2024. All rights reserved</p>
       </div>
     </footer>
   );

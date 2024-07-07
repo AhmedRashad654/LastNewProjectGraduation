@@ -25,11 +25,13 @@ export default function Register() {
         }
       })
       .catch((error) => {
-       toast.error(error.response.data.message)
+        toast.error(error.response.data.message);
+        toast.error("😂😒 بس بنسبة كبيرة عمل الايميل Nodemailer مشكلة في ");
+        navigate("/login");
       });
   }
   return (
-    <div className="row">
+    <div className="row w-[95%] mx-auto">
       <div className="col-lg-5 d-none d-lg-flex justify-content-center align-items-center my-5">
         <img className="w-100 phone1" src={phone1} alt="" />
       </div>

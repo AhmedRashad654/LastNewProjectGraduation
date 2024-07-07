@@ -13,52 +13,19 @@ import Services from "../services/Services";
 import Counter from "../counter/Counter";
 import Brands from "../brands/Brands";
 
-
 export default function Home() {
   return (
     <div>
       <HomeSlider />
       <HeaderCategory />
-      <div className={`${style.shapeContainer}`}>
-        <div className={style.Rectangle}></div>
-        <h6 className={style.title}>This Month</h6>
-      </div>
-      <div className={`${style.bestSellingProductsContainer} `}>
-        <i class="fa-brands fa-think-peaks text-red-600 fa-2x"></i>
-        <h3 className="fw-bold">Best Selling Products</h3>
-      </div>
+      <Bestseller />
+      <Brands/>
+      <Offres />
+      <Counter/>
+      <Products />
+      <Services/>
 
-      <div className={style.bg}>
-        <Bestseller />
-      </div>
-
-      <Brands></Brands>
-
-      <div className={`${style.bestSellingProductsContainer} mt-20`}>
-        <i class="fa-solid fa-square-caret-right text-red-600 fa-2x"></i>
-        <h3 className="fw-bold"> Our Offres Products </h3>
-      </div>
-
-      <div className={style.bg}>
-        <Offres />
-      </div>
-
-      <div>
-        <Counter></Counter>
-      </div>
-
-      <div className={`${style.bestSellingProductsContainer} mt-10`}>
-        <i class="fa-solid fa-cart-arrow-down text-red-600 fa-2x"></i>
-        <h3 className="fw-bold"> Products</h3>
-      </div>
-
-      <div className={style.bg}>
-        <Products />
-      </div>
-
-      <Services></Services>
-
-      <div className={`${style.bestSellingProductsContainer}  mt-10`}>
+      <div className={`${style.bestSellingProductsContainer}  mt-20 ml-8`}>
         <i class="fa-brands fa-squarespace text-red-600 fa-2x "></i>
         <h3 className="fw-bold"> Our Exclusive Products </h3>
       </div>
@@ -67,7 +34,6 @@ export default function Home() {
         <h1 className={style.new}>New</h1>
         <Exclusive />
       </div>
-    
     </div>
   );
 }

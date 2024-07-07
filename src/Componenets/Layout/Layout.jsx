@@ -32,7 +32,7 @@ export default function Layout() {
     <>
       <Navbar />
 
-      <div className="containe min-h-[62vh]">
+      <div className="min-h-[calc(67vh)]">
         <Outlet />
       </div>
 

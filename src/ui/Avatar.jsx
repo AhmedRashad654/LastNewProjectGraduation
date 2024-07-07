@@ -14,7 +14,7 @@ export default function Avatar({ name, width }) {
   return (
     <div className="mb-3 ">
       <div
-        className={`bg-slate-100 flex items-center justify-center rounded-full text-center font-semibold shadow-md`}
+        className={`bg-slate-100 text-gray-700 flex items-center justify-center rounded-full text-center font-semibold shadow-md`}
         style={{ width: width, height: width }}
       >
         {nameSplit}

@@ -3,7 +3,7 @@ import styles from './ForgetPasswordThree.module.css'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
+import { request } from "../../axios/axios";
 
 
 export default function ForgetPasswordThree() {
@@ -27,7 +27,7 @@ export default function ForgetPasswordThree() {
     onSubmit: async (values) => {
       setIsLoading(true);
       try {
-        await axios.post(`http://localhost:5000/users/resetPasswrod/${token}`, {
+        await request.post(`/users/resetPasswrod/${token}`, {
           password: values.password,
           PasswordConfirm: values.PasswordConfirm,
         });

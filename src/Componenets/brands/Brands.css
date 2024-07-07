@@ -1,19 +1,8 @@
 
-  .brandes{
-    margin: 70px 0;
-  }
-  .icon-box img {
-    animation: slide-in 10s linear infinite;
-    position: relative;
-  }
-  
-
-
-
   .allslick {
   width: 80%;
   margin: auto;
-  margin-top: 150px;
+  margin-top: 100px;
   margin-bottom: 100px;
 }
 .allslick .title {
@@ -29,12 +18,12 @@
   }
 }
 .title p {
-  color: var(--ulNavbar);
+
   font-size: 16px;
 }
 .title h3 {
   font-size: 30px;
-  color: var(--btnNavbar);
+
 }
 
 

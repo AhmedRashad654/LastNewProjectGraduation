@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import "./products.css";
-import { Button } from "react-bootstrap";
 import { request } from "../../axios/axios";
 import ProductItem from "../ProductItem/ProductItem";
 import { useQuery } from "react-query";
-
+import style from '../Home/Home.module.css'
 function Products() {
   const [hoverProduct, setHoverProduct] = useState(null);
 
@@ -36,8 +35,12 @@ function Products() {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
   };
   return (
-    <div>
-      <div className="grid grid-cols-[repeat(auto-fit,_minmax(0,_250px))]">
+    <div className="mx-auto w-[95%] my-5">
+      <div className={`${style.bestSellingProductsContainer} mt-20`}>
+        <i class="fa-solid fa-cart-arrow-down text-red-600 fa-2x"></i>
+        <h3 className="fw-bold"> Products</h3>
+      </div>
+      <div className="grid grid-cols-[repeat(auto-fit,_minmax(0,_250px))] gap-5">
         {data &&
           data?.data?.data?.map((product) => (
             <ProductItem
@@ -51,12 +54,20 @@ function Products() {
           ))}
       </div>
       <div className="d-flex justify-content-between mt-4">
-        <Button onClick={handlePreviousPage} disabled={currentPage === 1}>
+        <button
+          onClick={handlePreviousPage}
+          disabled={currentPage === 1}
+          className="btn btn-danger"
+        >
           Previous
-        </Button>
-        <Button onClick={handleNextPage} disabled={!data?.data?.hasNextPage}>
+        </button>
+        <button
+          onClick={handleNextPage}
+          disabled={!data?.data?.hasNextPage}
+          className="btn btn-danger"
+        >
           Next
-        </Button>
+        </button>
       </div>
     </div>
   );

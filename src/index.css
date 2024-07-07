@@ -19,6 +19,7 @@ body{
 
 .scrollbar::-webkit-scrollbar-thumb {
   background: #a6a6a8;
+  color: #d35b5b;
 }
 a {
   text-decoration: none !important;

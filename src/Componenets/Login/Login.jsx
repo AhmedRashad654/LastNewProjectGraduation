@@ -47,7 +47,7 @@ export default function Login() {
   console.log(favoriteProducts);
 
   return (
-    <div className="row">
+    <div className="row w-[95%] mx-auto">
       <div className="col-lg-5 d-none d-lg-flex justify-content-center align-items-center mt-5">
         <img className="phone2 w-100" src={phone1} alt="" />
       </div>

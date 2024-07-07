@@ -8,13 +8,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { setWishList } from "../../slice/slice";
 import { toast } from "react-toastify";
 import Rating from "../../ui/Rating";
-
+import { FaEye } from "react-icons/fa6";
 export default function ProductItem({
   product,
   hoverProduct,
   handleMouseOver,
   handleMouseOut,
   offer,
+  id,
 }) {
   const { getItemsQuantity, increaseQuantity, decreaseQuantity, removeItem } =
     useShoppingCart();
@@ -46,6 +47,7 @@ export default function ProductItem({
       className=""
       onMouseOver={() => handleMouseOver(product._id)}
       onMouseOut={handleMouseOut}
+      id={`${id}`}
     >
       <div className="product overflow-hidden px-2 py-3 cursor-pointer position-relative">
         <img
@@ -111,11 +113,7 @@ export default function ProductItem({
                       "Product Increased Quantity Successfully to your Card!",
                       {
                         position: "top-right",
-                        autoClose: 2000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        draggable: true,
-                        progress: undefined,
+
                         theme: "light",
                       }
                     );
@@ -136,11 +134,7 @@ export default function ProductItem({
                     decreaseQuantity(product);
                     toast.info("Product Decreased Quantity!", {
                       position: "top-right",
-                      autoClose: 2000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      draggable: true,
-                      progress: undefined,
+
                       theme: "light",
                     });
                   } else {
@@ -161,10 +155,7 @@ export default function ProductItem({
                   toast.warn("Product Already Removed fronm your Cart!", {
                     position: "top-right",
                     autoClose: 2000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    draggable: true,
-                    progress: undefined,
+
                     theme: "dark",
                   });
                 } else {
@@ -183,13 +174,32 @@ export default function ProductItem({
           <button className="btn-icon favourit">
             {favorite?.length > 0 &&
             favorite.find((e) => e._id === product?._id) ? (
-              <i
-                className="fa-solid fa-heart iconwishfavourit"
+              <svg
+                aria-label="Like"
+                color="rgb(237, 73, 86)"
+                fill="rgb(237, 73, 86)"
+                height="19"
+                role="img"
+                viewBox="0 0 24 22"
+                width="20"
                 onClick={() => handleRemove(product?._id)}
-              ></i>
+                className="mt-3 mr-1"
+              >
+                <path
+                  d="M1 7.66c0 4.575 3.899 9.086 9.987 12.934.338.203.74.406 1.013.406.283 0 .686-.203 1.013-.406C19.1 16.746 23 12.234 23 7.66 23 3.736 20.245 1 16.672 1 14.603 1 12.98 1.94 12 3.352 11.042 1.952 9.408 1 7.328 1 3.766 1 1 3.736 1 7.66Z"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                ></path>
+              </svg>
             ) : (
-              <i
-                className="fa-regular fa-heart iconwish"
+              <svg
+                aria-label="Like"
+                color="rgb(237, 73, 86)"
+                fill="transparent"
+                height="19"
+                role="img"
+                viewBox="0 0 24 22"
+                width="20"
                 onClick={() => {
                   if (localStorage.getItem("token")) {
                     addWishLish(product?._id);
@@ -197,11 +207,23 @@ export default function ProductItem({
                     navigate("/login");
                   }
                 }}
-              ></i>
+                className="mt-3 mr-1"
+              >
+                <path
+                  d="M1 7.66c0 4.575 3.899 9.086 9.987 12.934.338.203.74.406 1.013.406.283 0 .686-.203 1.013-.406C19.1 16.746 23 12.234 23 7.66 23 3.736 20.245 1 16.672 1 14.603 1 12.98 1.94 12 3.352 11.042 1.952 9.408 1 7.328 1 3.766 1 1 3.736 1 7.66Z"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                ></path>
+              </svg>
             )}
           </button>
           <Link to={`/details/${product._id}`}>
-            <i className="fa-regular fa-eye icondetails"></i>
+            {/* <i className="fa-regular fa-eye icondetails"></i> */}
+            <FaEye
+              className="icondetails mt-3 mr-[2px]"
+              size={25}
+              color="red"
+            />
           </Link>
         </div>
       </div>

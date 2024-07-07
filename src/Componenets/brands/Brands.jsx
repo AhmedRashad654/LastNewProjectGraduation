@@ -8,6 +8,7 @@ import imgSrc3 from "../../../src/Assets/0f7d50fc9ab9c884c563a55c98a77e35.png";
 import imgSrc4 from "../../../src/Assets/photo_2024-06-26_13-41-14.png";
 import "./Brands.css";
 
+
 function Brands() {
   const settings = {
     dots: false,
@@ -31,11 +32,12 @@ function Brands() {
       },
     ],
   };
-  return (
 
+  return (
     <div className="allslick">
       <div className="title">
-        <h3 className="font-bold">Brands</h3>
+        <h3 className="font-bold text-red-500">Brands</h3>
+        <p className="text-red-400">Brands of the products on our website</p>
       </div>
 
       <Slider {...settings}>

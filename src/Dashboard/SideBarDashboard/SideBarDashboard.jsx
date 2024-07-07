@@ -6,7 +6,6 @@ import { BiCategoryAlt } from "react-icons/bi";
 import logo from "../../Assets/Gaziantep_Gaziray_Line_Symbol.svg (1).png";
 import { MdProductionQuantityLimits } from "react-icons/md";
 import { FaBorderAll } from "react-icons/fa6";
-
 export default function SideBarDashboard() {
   const navigate = useNavigate();
   return (
@@ -46,7 +45,7 @@ export default function SideBarDashboard() {
           <Link to={"/dashboard/ordersdashboard"}>
             <li className="flex gap-1 items-center  text-slate-700 font-semibold smm:mb-4">
               <FaBorderAll size={20} />
-          
+
               <p className="smm:hidden mt-3">Orders</p>
             </li>
           </Link>

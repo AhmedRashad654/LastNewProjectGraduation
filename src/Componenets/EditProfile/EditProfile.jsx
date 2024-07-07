@@ -39,7 +39,7 @@ export default function EditProfile() {
   }
 
   return (
-    <form>
+    <form className="w-[95%] mx-auto">
       <div className="row bg-light bg-opacity-25 shadow w-100 p-5 rounded-2 mt-5 mb-5">
         <p className=" text-danger fw-bolder fs-4">Edit your Profile</p>
         <div className="mt-2">

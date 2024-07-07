@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MdDashboard } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
 import { FaFirstOrder } from "react-icons/fa6";
+import { CiBookmarkCheck } from "react-icons/ci";
 import {
   faHeart,
   faShoppingCart,
@@ -45,9 +46,9 @@ export default function Navbar() {
   }, [isLoggedOut, setIsLoggedOut]);
 
   return (
-    <nav className="navbar p-3" >
+    <nav className="navbar p-3">
       <div
-        className="navbar-logo ms-5 cursor-pointer"
+        className="navbar-logo  cursor-pointer"
         onClick={() => navigate("/")}
       >
         <h1>
@@ -55,13 +56,16 @@ export default function Navbar() {
         </h1>
       </div>
       <div className="navbar-search">
-        <input 
+        <input
           type="text"
-          placeholder ="What are you looking for?"
+          placeholder="What are you looking for?"
           onChange={handleSearch}
         />
       </div>
-      <div className="navbar-icons me-5">
+      <div className="navbar-icons ">
+        <Link className="navbar-icon " to={"/aboutus"}>
+          <CiBookmarkCheck size={30} />
+        </Link>
         {localStorage.getItem("token") && (
           <Link className="navbar-icon user" to={"/orders"}>
             <FaFirstOrder />
@@ -80,7 +84,6 @@ export default function Navbar() {
             )}
           </Link>
         )}
-
         {!localStorage.getItem("token") && (
           <Link to={"/login"} className="navbar-icon user">
             <GoSignIn />
