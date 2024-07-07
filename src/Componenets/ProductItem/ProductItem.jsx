@@ -9,6 +9,7 @@ import { setWishList } from "../../slice/slice";
 import { toast } from "react-toastify";
 import Rating from "../../ui/Rating";
 import { FaEye } from "react-icons/fa6";
+
 export default function ProductItem({
   product,
   hoverProduct,
@@ -60,10 +61,10 @@ export default function ProductItem({
         </h5>
         <div className=" mb-3">
           <div className="flex justify-between items-center">
-            <p>{formatCurrency(product.price)}$</p>
+            <p>{formatCurrency(product.price)}</p>
             {offer ? (
               <p className="text-gray-800 text-decoration-line-through">
-                {product.priceAfterOffer}$
+                {formatCurrency(product.priceAfterOffer)}
               </p>
             ) : (
               ""

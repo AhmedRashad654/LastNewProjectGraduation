@@ -41,6 +41,7 @@ export default function Checkout() {
     const stripePromise = await stripeKey;
     const { error } = await stripePromise.redirectToCheckout({
       sessionId: result?.data?.id,
+      
     });
     if (error) {
       console.error("error redirecting to stripe checkout:", error);

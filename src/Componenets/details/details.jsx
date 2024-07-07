@@ -142,9 +142,9 @@ function Details() {
             </Slider>
           </div>
           <div className={style.childttwo}>
-            <h1>{data?.data?.data[0]?.name}</h1>
+            <h1 className="text-red-500">{data?.data?.data[0]?.name}</h1>
             <Rating rating={data?.data?.data[0]?.Rate} size={30} />
-            <p>{data?.data?.data[0]?.description}</p>
+            <h1>{data?.data?.data[0]?.description}</h1>
             <div className="flex justify-between items-center">
               <p>${data?.data?.data[0]?.price}</p>
               {data?.data?.data[0].offres && (
@@ -202,3 +202,4 @@ function Details() {
 }
 
 export default Details;
+
