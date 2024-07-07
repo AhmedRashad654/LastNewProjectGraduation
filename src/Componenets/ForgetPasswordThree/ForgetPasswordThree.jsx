@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate, useParams } from 'react-router-dom';
 import { request } from "../../axios/axios";
-
+import { toast } from "react-toastify";
 
 export default function ForgetPasswordThree() {
 
@@ -31,6 +31,7 @@ export default function ForgetPasswordThree() {
           password: values.password,
           PasswordConfirm: values.PasswordConfirm,
         });
+        toast.success("Updated Password")
         navigate('/login');
       } catch (error) {
         console.error(error);
